@@ -1,0 +1,8 @@
+<svg xmlns='http://www.w3.org/2000/svg' width="130" height="70">
+   <g fill="transparent" stroke-width='3' stroke='#8f6f49'>
+      <polyline points="10,70 40,3 70,70"></polyline>
+      <polyline points="20,50 60,50" ></polyline>
+      <polyline points="80,70 98,35 116,70"></polyline>
+      <polyline points="86,60 110,60"></polyline>
+    </g>
+</svg>

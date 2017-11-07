@@ -1,0 +1,208 @@
+.patient-detail-bar {
+  min-height: 100px;
+  background-color: #60534B;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  padding: 1rem 3rem;
+}
+
+/deep/ .loading-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.patient-information {
+  width: 30%;
+}
+
+.room {
+  font-family: 'skolasansbold';
+  background: #FFFFFF;
+  width: 16rem;
+  margin: 0 0 .5rem 0;
+  font-size: 1.4rem;
+  padding: .2rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.full-name {
+  font-family: 'skolasansbold';
+  text-transform: capitalize;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  color: #FFFFFF;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.birthday {
+  font-family: 'skolasansmedium';
+  color: #EB9F9B;
+}
+
+.back-button {
+  background: url("/assets/img/ic_keyboard_arrow_right_clear.svg");
+  background-size: cover;
+  height: 2.2rem;
+  width: 2.2rem;
+  padding: 1.2rem;
+  border-radius: 50%;
+  border: .1rem solid #A99C95;
+  transform: rotate(-180deg);
+  margin-right: 2rem;
+  cursor: pointer;
+}
+
+.standard-time {
+  width: 10rem;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  margin: 0 auto;
+}
+
+.standard-time-label {
+  font-family: 'skolasansregular';
+  color: #FFFFFF;
+  margin-right: 1rem;
+}
+
+.checkbox-inline {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+  font-family: 'skolasansbold';
+  color: #BBB1A9;
+  margin-right: .5rem;
+}
+
+.checkbox-inline .field {
+  border: 1px dashed #fff;
+  border-radius: .4rem;
+  padding: 4px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  height: 2.8rem;
+  width: 2.8rem;
+  justify-content: center;
+  align-items: center;
+  margin-right: .4rem;
+}
+
+.checkbox-inline input {
+  position: relative;
+  height: 2.4rem;
+  width: 2.4rem;
+  margin: -2px;
+}
+
+.messenger-container {
+  min-height: 100px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.messages-field {
+  width: 66%;
+  padding: 1px;
+  border: 1px dashed #777;
+  border-radius: .5rem;
+  position: relative;
+}
+
+.messages-field input {
+  font-family: 'skolasansmedium';
+  font-size: 1.6rem;
+  border-radius: .5rem;
+  height: 40px;
+}
+
+.messenger-container .btn {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  color: #757575;
+  margin-left: 2rem;
+  padding: 0;
+  font-family: 'skolasansbold';
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.messenger-container .btn img {
+  margin-right: 1rem;
+}
+
+.messages-field .btn {
+  font-family: 'skolasansbold';
+  text-transform: uppercase;
+  padding: 7px;
+  font-size: 16px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  line-height: 16px;
+  background-color: #da9d8c;
+  border: 1px solid #da9d8c;
+  color: #fff;
+}
+
+.add-event-section {
+  margin-left: auto;
+}
+
+.btn-new-event {
+  font-family: 'skolasansbold';
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  line-height: 1.5rem;
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  min-width: 20rem;
+  background-color: transparent;
+  border: none;
+}
+
+.btn-new-event img {
+  height: 4rem;
+  width: 3rem;
+}

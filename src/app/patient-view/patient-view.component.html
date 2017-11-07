@@ -1,0 +1,19 @@
+<smart-header>
+  <div col1>
+    <app-greeting [myPatient]="{ name: 'Bruno' }"></app-greeting>
+  </div>
+  <div col3>
+    <app-alerts-scope></app-alerts-scope>
+  </div>
+  <div col4>
+    <app-ajust-font [ngStyle]="{'margin-top': '7px'}"></app-ajust-font>
+  </div>
+</smart-header>
+<div class="container-fluid text-center">
+  <div class="row">
+    <app-calendar></app-calendar>
+    <div class="col-md-9">
+      <scheduler [customScheduleObject]="schedulerConfig" [loadingActive]="isLoading"></scheduler>
+    </div>
+  </div>
+</div>

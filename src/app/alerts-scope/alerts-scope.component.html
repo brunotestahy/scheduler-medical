@@ -1,0 +1,100 @@
+<div id="alerts-scope">
+  <div class="row">
+    <div class="col-md-3">
+      <a class="alerts-scope__control"
+         [ngClass]="showNotices ? 'alert-icon-clicked' : ''"
+         (click)="badgeCounters.notice > 0 ? showNotices = !showNotices : ''"
+         #noticesLink>
+        <img src="/assets/img/bell.png"><span class="badge">{{badgeCounters.notice > 0 ? badgeCounters.notice : ''}}</span>
+      </a>
+
+      <div class="alerts-scope__details"
+           [hidden]="!showNotices"
+           (clickOutside)="noticesLink.contains($event.target) ? '' : showNotices = false;">
+        <div class="alerts-scope__details__pre-message">
+          Você ainda possui {{badgeCounters.notice}} atividade{{badgeCounters.notice > 1 ? 's' : ''}} para hoje.<br>
+          Vamos tentar concluir agora?
+        </div>
+
+        <ul class="alerts-scope__messages alerts-scope__messages--has-sub">
+          <li *ngFor="let notice of notices">
+            <h3 class="alerts-scope__details__title">{{notice.type}} ({{notice.messages.length}})</h3>
+
+            <ul>
+              <li *ngFor="let message of notice.messages">{{message}}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <a class="alerts-scope__control"
+         [ngClass]="showSafety ? 'alert-icon-clicked' : ''"
+         (click)="badgeCounters.safety > 0 ? showSafety = !showSafety : ''"
+         #safetyLink>
+        <img src="/assets/img/lock.png"><span class="badge">{{badgeCounters.safety > 0 ? badgeCounters.safety : ''}}</span>
+      </a>
+
+      <div class="alerts-scope__details"
+           [hidden]="!showSafety"
+           (clickOutside)="safetyLink.contains($event.target) ? '' : showSafety = false">
+        <div class="alerts-scope__details__title">
+          Informação de segurança ao paciente
+        </div>
+
+        <ul class="alerts-scope__messages">
+          <li *ngFor="let issue of myIssues.dtoList">
+            {{issue.detail}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <a class="alerts-scope__control"
+         [ngClass]="showAllergies ? 'alert-icon-clicked' : ''"
+         (click)="badgeCounters.allergy > 0 ? showAllergies = !showAllergies : ''"
+         #allergyLink>
+        <img src="/assets/img/forbidden.png"><span class="badge">{{badgeCounters.allergy > 0 ? badgeCounters.allergy : ''}}</span>
+      </a>
+
+      <div class="alerts-scope__details alerts-scope__details--auto-width"
+           [hidden]="!showAllergies"
+           (clickOutside)="allergyLink.contains($event.target) ? '' : showAllergies = false">
+        <div class="alerts-scope__details__title">
+          Alergias
+        </div>
+
+        <ul class="alerts-scope__messages">
+          <li *ngFor="let allergy of myAllergies.dtoList">
+            {{allergy.substance}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <a class="alerts-scope__control"
+         [ngClass]="showInfos ? 'alert-icon-clicked' : ''"
+         (click)="badgeCounters.info > 0 ? showInfos = !showInfos : ''"
+         #infoLink>
+        <img src="/assets/img/info.png"><span class="badge">{{badgeCounters.info > 0 ? badgeCounters.info : ''}}</span>
+      </a>
+
+      <div class="alerts-scope__details"
+           [hidden]="!showInfos"
+           (clickOutside)="infoLink.contains($event.target) ? '' : showInfos = false">
+        <div class="alerts-scope__details__title">
+          Informações gerais ao paciente
+        </div>
+
+        <ul class="alerts-scope__messages">
+          <li *ngFor="let comm of communications.dtoList">
+            {{comm.content}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

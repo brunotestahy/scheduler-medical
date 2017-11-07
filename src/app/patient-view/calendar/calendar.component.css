@@ -1,0 +1,69 @@
+.calendar-view {
+  min-height: 300px;
+}
+
+.time {
+  font-family: 'skolasansmedium';
+  color: #ffffff;
+  font-size: 4rem;
+  margin: 2rem;
+}
+
+.month {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 20rem;
+}
+
+.month span {
+  font-family: 'skolasansbold';
+  color: #ffffff;
+  font-size: 2.8rem;
+  line-height: 2.5rem;
+  text-transform: uppercase;
+}
+
+.month-prev, .month-next {
+  background: url("/assets/img/ic_keyboard_arrow_right_48px.svg");
+  background-size: cover;
+  height: 2.2rem;
+  width: 2.2rem;
+  border-radius: 50%;
+  border: .2rem solid #615652;
+}
+
+.month-prev {
+  transform: rotate(-180deg);
+}
+
+.day {
+  font-family: 'skolasansregular';
+  color: #ffffff;
+  font-size: 8rem;
+  line-height: 8rem;
+}
+
+.year {
+  font-family: 'skolasansbold';
+  color: #ffffff;
+  font-size: 2.5rem;
+}
+
+.date-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #949b9f;
+  min-height: 20rem;
+  border-radius: .5rem;
+}

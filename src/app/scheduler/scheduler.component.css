@@ -1,0 +1,460 @@
+/*Enable this for fade animation works*/
+:host {
+  display: block;
+  position: relative;
+}
+
+/*Scheduler Header Style*/
+.new-event {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 8rem;
+  background-color: #ffffff;
+  border-radius: .6rem .6rem 0 0;
+  border: none;
+  padding: 0 3%;
+}
+
+.pro-view {
+  font-family: 'skolasansmedium';
+  color: #4D4337;
+  font-size: 1.55vw;
+  margin: 0 1rem;
+}
+
+.btn-new-event {
+  font-family: 'skolasansbold';
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  line-height: 1.5rem;
+  font-size: 1.5rem;
+  color: #E09E95;
+  text-transform: uppercase;
+  min-width: 20rem;
+  background-color: transparent;
+  border: none;
+}
+
+.btn-new-event img {
+  height: 4rem;
+  width: 3rem;
+}
+
+.thumbnail {
+  margin: 1rem 0;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.thumbnail img {
+  border-radius: 50%;
+}
+
+.dialog-content {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 0 10px;
+}
+
+/deep/ .overlay .content {
+  width: 80%;
+}
+
+/*Add/Edit Modal Style*/
+
+.event-add-edit .title {
+  font-family: 'skolasansbold';
+  font-size: 3rem;
+  text-align: center;
+  margin: 0 0 4rem 0;
+}
+
+.event-add-edit .logo-family {
+  background: url("/assets/img/VisitaFamilia.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-rotinahospitalar {
+  background: url("/assets/img/PlanoCuidados.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-refeicao {
+  background: url("/assets/img/CafeManha.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-doctor {
+  background: url("/assets/img/MedicoExterno.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-outros {
+  height: 6rem;
+  width: 6rem;
+  border: 5px solid #E7CDC7;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "skolasansbold";
+  font-size: 4rem;
+  color: #9C766A;
+}
+
+.event-add-edit .logo-description {
+  font-family: 'skolasansmedium';
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: #A7A5A3;
+}
+
+.category-active-doctor .logo-doctor + .logo-description {
+  color: #9BADB5;
+}
+
+.category-active-rotinahospitalar .logo-rotinahospitalar + .logo-description {
+  color: #9BADB5;
+}
+
+.category-active-refeicao .logo-refeicao + .logo-description {
+  color: #B9B099;
+}
+
+.category-active-family .logo-family + .logo-description {
+  color: #A68488;
+}
+
+.category-active-outros .logo-outros + .logo-description {
+  color: #A98780;
+}
+
+.close-button {
+  background: url('../../assets/img/ic_close_24px.svg') no-repeat;
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+}
+
+/deep/ .select-field {
+  border: .19rem dashed rgba(153, 153, 153, .9)  !important;
+  padding: 1px !important;
+}
+
+/deep/ .suggestion-box ul {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.label-categories {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 5rem;
+}
+
+.category {
+  height: 19rem;
+  width: 19rem;
+  background-color: transparent;
+  border: 2px solid #E2E1DF;
+  position: relative;
+  border-radius: .5rem;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.category:hover {
+  cursor: pointer;
+}
+
+.category-active-rotinahospitalar,
+.category-active-refeicao,
+.category-active-family,
+.category-active-doctor,
+.category-active-outros {
+  border: none;
+}
+
+.category-active-rotinahospitalar {
+  background-color: #EDF1F9;
+}
+
+.category-active-refeicao {
+  background-color: #F7EAC5;
+}
+
+.category-active-family {
+  background-color: #EBD0D2;
+}
+
+.category-active-doctor {
+  background-color: #DEF1F9;
+}
+
+.category-active-outros {
+  background-color: #F0EAE6;
+}
+
+.category-active-rotinahospitalar::after,
+.category-active-refeicao::after,
+.category-active-family::after,
+.category-active-doctor::after,
+.category-active-outros::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -29px;
+  border: 15px solid;
+}
+
+.category-active-rotinahospitalar::after {
+  border-color: #EDF1F9 transparent transparent transparent;
+}
+
+.category-active-refeicao::after {
+  border-color: #F7EAC5 transparent transparent transparent;
+}
+
+.category-active-family::after {
+  border-color: #EBD0D2 transparent transparent transparent;
+}
+
+.category-active-doctor::after {
+  border-color: #DEF1F9 transparent transparent transparent;
+}
+
+.category-active-outros::after {
+  border-color: #F0EAE6 transparent transparent transparent;
+}
+
+.event-type-selection {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.event-type-selection .field {
+  width: 100%;
+}
+
+.field {
+  border: .19rem dashed rgba(153, 153, 153, .9);
+  border-radius: .7rem;
+  padding: 1px;
+}
+
+.field input {
+  font-family: 'skolasansmedium';
+  font-size: 1.6rem;
+  border-radius: .5rem;
+}
+
+.field.invalid {
+  border: 1px dashed #ff0000;
+}
+
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
+  border: 1px solid #ff9999;
+}
+
+label {
+  font-family: 'skolasansbold';
+  color: #A99A94;
+  font-size: 1.5rem;
+}
+
+.repeat-every-day label, .event-standard label {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding-left: 0;
+}
+
+.repeat-every-day label .field, .event-standard label .field {
+  margin-left: 1.4rem;
+}
+
+.category-time {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.date {
+  width: 35%;
+}
+
+.all-day-check {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  height: 52px;
+}
+
+.standard-all-day-check .checkbox-inline {
+  padding-left: 0 !important;
+}
+
+.checkbox-inline {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  font-family: 'skolasansbold';
+  margin-right: .5rem;
+}
+
+.checkbox-inline .field {
+  border: .19rem dashed rgba(153, 153, 153, .9);
+  border-radius: .4rem;
+  padding: 4px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  height: 2.8rem;
+  width: 2.8rem;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+  margin-right: .4rem;
+}
+
+.checkbox-inline input {
+  position: relative;
+  height: 2rem;
+  width: 2rem;
+  margin: -2px;
+}
+
+.time-start {
+  margin-left: 2rem;
+}
+
+.time-until-label {
+  padding: 2rem 2rem .8rem 2rem;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: flex-end;
+}
+
+.time-end {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: flex-end;
+}
+
+.btn {
+  font-family: 'skolasansbold';
+  background-color: #DF9F93;
+  color: #ffffff;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+/*Description Detail Modal Style*/
+
+.event-description-detail {
+  width: 100%;
+}
+
+.event-description-detail .event-title {
+  font-family: 'skolasansbold';
+  font-size: 3rem;
+  margin: 0 0 4rem 0;
+}
+
+.event-description-detail .event-description {
+  font-family: 'skolasansmedium';
+  margin: 0 0 3rem 0;
+  color: #9C9591;
+}
+
+/*Loading Style*/
+
+.loading {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  z-index: 10;
+  left: 0;
+  bottom: 0;
+  opacity: 0.9;
+  border-radius: .5rem;
+}
+
+/deep/ .loading-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  margin-top: 25%;
+}
+
+/deep/ .main-loading {
+  background-color: #949B9F !important;
+}

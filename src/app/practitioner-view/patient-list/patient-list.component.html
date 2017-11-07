@@ -1,0 +1,199 @@
+<smart-search-header placeHolder="{{'practitionerView.searchHeader.searchPlaceholder' | translate}}"
+                     #searchHeader
+                     (updateSuggestions)="updateSuggestions()">
+  <div class="filter-selection">
+    <div class="form-group">
+      <label>{{'practitionerView.label.order' | translate}}</label>
+
+      <smart-select width="100px"
+                    [(value)]="orderBySelectValue"
+                    (change)="orderBySelectValue = $event">
+        <smart-option [value]="'fullName'" [display]="'practitionerView.label.name' | translate"></smart-option>
+        <smart-option [value]="'room'" [display]="'practitionerView.label.room' | translate"></smart-option>
+      </smart-select>
+    </div>
+
+    <div class="form-group">
+      <label>{{'practitionerView.label.sector' | translate}}</label>
+
+      <smart-select width="100px" [(value)]="value" (change)="''">
+        <smart-option [display]="'practitionerView.label.all' | translate"></smart-option>
+        <smart-option *ngFor="let i of [1,2,3,4,5]" [value]="''+i" [display]="'item ' + i"></smart-option>
+      </smart-select>
+    </div>
+
+    <div class="add-event-section">
+      <button class="btn-new-event" (click)="openDialog()">
+        <img src="/assets/img/ic_add_box_practitioner.svg" alt="add_icon">
+        {{'practitionerView.label.standardButton' | translate}}
+      </button>
+    </div>
+  </div>
+</smart-search-header>
+
+<smart-loading *ngIf="isLoading"></smart-loading>
+
+<div class="patients-cards-container"
+     *ngIf="!isLoading && !isAsyncError">
+  <smart-card
+    *ngFor="let patient of patients | filterPipe: searchHeader['inputElement']['nativeElement']['value']: ['room', 'fullName'] | orderBy: orderBySelectValue"
+    (cardClick)="showPatientDetail(patient)"
+    @fadeAnimation>
+    <div content>
+      <div class="room">{{('practitionerView.label.room' | translate) + ' ' + patient.room}}</div>
+      <div class="full-name">{{patient.fullName.toLowerCase()}}</div>
+      <div class="birthday" *ngIf="patient.birthDate.dateTime">{{(patient.birthDate.dateTime | date: birthDateFormat) +
+        ' - '
+        + patient.birthDate['age'] + ' ' + ('practitionerView.label.years' | translate)}}
+      </div>
+    </div>
+  </smart-card>
+  <div class="fix-cards-space" *ngFor="let fix of [1, 2, 3, 4, 5]"></div>
+</div>
+<div class="async-error" *ngIf="!isLoading && isAsyncError">
+  <span class="error-message">{{'error.generalMessage' | translate}}</span>
+  <button class="btn" (click)="retryAsyncOpertion()">{{'error.retryButton' | translate}}</button>
+</div>
+
+<!--Add/Edit an Event Modal-->
+<smart-dialog [opened]="modalConfig.active" (overlayClick)="closeDialog()">
+  <button class="close-button" (click)="closeDialog()"></button>
+
+  <div class="dialog-content text-left">
+
+    <div class="event-add-edit">
+      <h1 class="title">{{'patientView.eventModal.create.header' | translate}}</h1>
+      <div class="label-categories">
+        <div class="category" *ngFor="let category of appointmentsCategory.slice(0, 3)"
+             [ngClass]="modalConfig.categoryEventStyle.selectedCategory === category.code ? modalConfig.categoryEventStyle.activeCategoryClass + category.code : ''"
+             (click)="modalConfig.categoryEventStyle.selectedCategory = category.code">
+          <div [ngClass]="'logo-' + category.code">{{category.code === 'outros' ? '&#63;' : ''}}</div>
+          <div class="logo-description">{{category.display}}</div>
+        </div>
+      </div>
+
+      <div class="form-event">
+        <form #modalSchedulerForm="ngForm" (ngSubmit)="createStandardAppointmentType()">
+          <div class="form-group event-standard">
+            <label class="checkbox-inline">{{'scheduler.addEditForm.standardAppointment' | translate}}
+              <div class="field">
+                <input type="checkbox"
+                       (change)="inputModels.standard = !inputModels.standard"
+                       [checked]="inputModels.standard"
+                       [disabled]="inputModels.standard">
+              </div>
+            </label>
+          </div>
+
+          <div class="standard-title">
+            <div class="form-group">
+              <label for="standard-title">{{'scheduler.addEditForm.title' | translate}}</label>
+              <div class="field">
+                <input type="text"
+                       class="form-control input-lg"
+                       id="standard-title"
+                       name="standard-title"
+                       [(ngModel)]="inputModels.title"
+                       required
+                       #standardTitleCtrl
+                       [ngClass]="{'invalid': standardTitleCtrl.invalid && standardTitleCtrl.touched}">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group event-description">
+            <label for="event-description">{{'scheduler.addEditForm.description' | translate}}</label>
+            <div class="field">
+              <textarea class="form-control"
+                        id="event-description"
+                        name="event-description"
+                        rows="3"
+                        [(ngModel)]="inputModels.description"
+                        #descriptionCtrl="ngModel">
+              </textarea>
+            </div>
+          </div>
+
+          <div class="form-group event-videolink">
+            <label for="event-videolink">{{'scheduler.addEditForm.videoLink' | translate}}</label>
+            <div class="field">
+              <input type="text"
+                     class="form-control input-lg"
+                     id="event-videolink"
+                     name="event-videolink"
+                     [(ngModel)]="inputModels.videoLink"
+                     #videoCtrl="ngModel">
+            </div>
+          </div>
+
+          <div class="category-time">
+            <div class="form-group date">
+              <label for="event-date">{{'scheduler.addEditForm.date' | translate}}</label>
+              <div class="field">
+                <input type="date"
+                       class="form-control input-lg"
+                       id="event-date"
+                       name="event-date"
+                       [(ngModel)]="inputModels.date"
+                       required
+                       #dateCtrl="ngModel"
+                       [ngClass]="{'invalid': dateCtrl.invalid && dateCtrl.touched}"
+                       [disabled]="true">
+              </div>
+            </div>
+
+            <div
+              [ngClass]="'form-group all-day-check standard-all-day-check'">
+              <label class="checkbox-inline">{{'scheduler.addEditForm.allDay' | translate}}
+                <div class="field">
+                  <input type="checkbox"
+                         (change)="inputModels.allDay = !inputModels.allDay"
+                         [checked]="inputModels.allDay">
+                </div>
+              </label>
+            </div>
+
+            <div class="form-group time-start" *ngIf="!inputModels.allDay">
+              <label for="event-time-start" *ngIf="!inputModels.standard">{{'scheduler.addEditForm.time' |
+                translate}}</label>
+              <label for="event-time-start" *ngIf="inputModels.standard">{{'scheduler.addEditForm.timeStandard' |
+                translate}}</label>
+              <div class="field">
+                <input type="time"
+                       class="form-control input-lg"
+                       id="event-time-start"
+                       name="event-time-start"
+                       [(ngModel)]="inputModels.time.start"
+                       required
+                       #startTimeCtrl="ngModel"
+                       [ngClass]="{'invalid': startTimeCtrl.invalid && startTimeCtrl.touched}">
+              </div>
+            </div>
+
+            <div class="form-group time-until-label" *ngIf="!inputModels.allDay">
+              <label>{{'scheduler.addEditForm.timeUntil' | translate}}</label>
+            </div>
+
+            <div class="form-group time-end" *ngIf="!inputModels.allDay">
+              <div class="field">
+                <input type="time"
+                       class="form-control input-lg"
+                       name="event-time-end"
+                       [(ngModel)]="inputModels.time.end"
+                       required
+                       #endTimeCtrl="ngModel"
+                       [ngClass]="{'invalid': endTimeCtrl.invalid && endTimeCtrl.touched}">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit"
+                  class="btn btn-lg"
+                  [disabled]="modalSchedulerForm.invalid">
+            {{'practitionerView.label.createStandardEvent' | translate}}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</smart-dialog>

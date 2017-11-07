@@ -1,0 +1,54 @@
+<div class="patient-detail-bar">
+  <div class="back-button" (click)="backToPreviousPage()"></div>
+  <div class="patient-information" [style.visibility]="!patient">
+    <div class="room" *ngIf="patient">{{('practitionerView.label.room' | translate) + ' ' + patient?.room}}</div>
+    <div class="full-name">{{patient?.fullName.toLowerCase()}}</div>
+    <div class="birthday" *ngIf="patient?.birthDate.dateTime">{{(patient?.birthDate.dateTime | date: birthDateFormat) +
+      ' - '
+      + patient?.birthDate.age + ' ' + ('practitionerView.label.years' | translate)}}
+    </div>
+  </div>
+  <div class="standard-time">
+    <label class="standard-time-label">{{'practitionerView.patientBar.standardTimeLabel' | translate}}</label>
+    <label class="checkbox-inline">{{'practitionerView.label.food' | translate}}
+      <div class="field">
+        <input type="checkbox"
+               (change)="onStandardTimeChange('refeicao')"
+               [checked]="stateObjects.checkbox.refeicao"
+               [disabled]="stateObjects.checkbox.disabled">
+      </div>
+    </label>
+    <label class="checkbox-inline">{{'practitionerView.label.hospitalRoutine' | translate}}
+      <div class="field">
+        <input type="checkbox"
+               (change)="onStandardTimeChange('rotinahospitalar')"
+               [checked]="stateObjects.checkbox.rotinaHospitalar"
+               [disabled]="stateObjects.checkbox.disabled">
+      </div>
+    </label>
+  </div>
+  <div class="add-event-section">
+    <button class="btn-new-event" (click)="addNewEvent()">
+      <img src="/assets/img/ic_add_box_practitioner.svg" alt="add_icon">
+      {{'scheduler.newEventBtnLabel' | translate}}
+    </button>
+  </div>
+</div>
+<div class="messenger-container">
+  <div class="messages-field"
+       [style.visibility]="'hidden'">
+    <input type="text"
+           class="form-control input-lg"
+           maxlength="60"
+           placeholder="{{'practitionerView.messageField.inputPlaceholder' | translate}}"
+           [ngModel]="messageInput"
+           (ngModelChange)="messageInput =  $event"
+           (keyup.enter)="messageInput ? sendMessage() : ''">
+    <button class="btn" *ngIf="messageInput">{{'practitionerView.messageField.sendButton' | translate}}</button>
+  </div>
+  <button class="btn" (click)="copyEventsFromYesterday()">
+    <img src="/assets/img/ic_content_copy_24px.svg" alt="add_icon">
+    {{'practitionerView.label.copyFromYesterday' | translate}}
+  </button>
+</div>
+<scheduler [customScheduleObject]="schedulerConfig" [loadingActive]="stateObjects.isLoading"></scheduler>

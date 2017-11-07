@@ -1,0 +1,17 @@
+#greeting-message img, #greeting-message span{
+  float: left;
+}
+
+#greeting-message {
+  margin-top: 5px;
+  margin-left: 50px;
+}
+
+#greeting-message .greeting {
+  display: block;
+  margin-top: 3px;
+  margin-left: 5px;
+  color: #b47e71;
+  font-family: 'skolasansmedium';
+  font-size: 18px;
+}

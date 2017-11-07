@@ -1,0 +1,222 @@
+<div id="rules_calendar">
+  <div class="container-fluid">
+    <div class="row center-block;" style="justify-content: center; display:flex" *ngIf="!dateShift" (panleft)="dateup()"
+         (panright)="datedown()">
+
+      <div *ngFor="let rc of rulesCalendar">
+        <div class="col-xs-12" *ngIf="rc.type != 'today'" (click)="changeDate(rc)">
+          <div [class]="rc.plan">
+            <div *ngIf="rc.plan == 'with-plan'">
+              <div [class]="rc.type">
+                <div class="progress-radius" *ngIf="rc.percent > 0">
+                  <round-progress [current]="rc.percent" [max]="100" [color]="'#FFF'" [background]="''" [radius]="50"
+                                  [stroke]="6" [rounded]="true"
+                                  [clockwise]="false" [responsive]="true" [duration]="1800"
+                                  [animation]="'easeInOutQuart'" class="radius" style="width:50px; height:50px">
+                  </round-progress>
+                  <div class="clearfix"></div>
+                </div>
+                <span class="number">{{rc.day}}</span>
+                <span class="month">{{rc.month}}</span>
+              </div>
+            </div>
+            <div *ngIf="rc.plan == 'without-plan'" class="{{rc.type}} without-plan">
+              <span class="number">{{rc.day}}</span>
+              <span class="month">{{rc.month}}</span>
+            </div>
+            <div class="content-release-medical" *ngIf="rc.alta == true">
+              <div class="content">
+                <span class="desc"> Previsão de Alta</span>
+                <a href="/" class="">Ver plano</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 c-calendar" *ngIf="rc.type == 'today'" id="calendarWidth">
+          <div [class]="rc.plan">
+            <div [class]="('c-calendar__control ' + rc.type + (showFullCalendar ? ' is-open' : '') )">
+              <!-- (click)="showFullCalendar = !showFullCalendar" -->
+              <span class="title">{{ 'practitionerView.rulesCalendar.todayLabel' | translate}}</span>
+              <div class="content">
+                <span class="number" style="padding-bottom:5px">{{rc.day}}</span>
+                <span class="month">{{rc.month}}</span>
+                <a class="open-calendar" *ngIf="false">
+                  <img src="/assets/img/tip.png"/>
+                </a>
+              </div>
+            </div>
+            <div class="content-release-medical" *ngIf="rc.alta == true">
+              <div class="content">
+                <span class="desc"> Previsão de Alta</span>
+                <a href="/" class="">Ver plano</a>
+              </div>
+            </div>
+
+            <div class="c-calendar__full" [hidden]="!showFullCalendar">
+              <div class="c-calendar__inner">
+
+                <ng-template #customCellTemplate let-day="day" let-locale="locale">
+                  <div [ngClass]="( 'cal-cell-top ' + getEventsClass( day.events ) )">
+                    <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+                    <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+                  </div>
+                  <div class="cal-events" *ngIf="day.events.length > 0">
+                    <div
+                      class="cal-event"
+                      *ngFor="let event of day.events"
+                      [style.backgroundColor]="event.color.primary"
+                      [ngClass]="event?.cssClass">
+                    </div>
+                  </div>
+                </ng-template>
+
+                <div
+                  class="btn c-calendar__btn c-calendar__btn--prev"
+                  mwlCalendarPreviousView
+                  [view]="view"
+                  [(viewDate)]="viewDate">
+                  Anterior
+                </div>
+                <div class="c-calendar__title">
+                  {{ viewDate | calendarDate:(view + 'ViewTitle'):'pt' }}
+                </div>
+                <div
+                  class="btn c-calendar__btn c-calendar__btn--next"
+                  mwlCalendarNextView
+                  [view]="view"
+                  [(viewDate)]="viewDate">
+                  Próximo
+                </div>
+
+                <mwl-calendar-month-view
+                  [viewDate]="viewDate"
+                  [events]="events"
+                  [locale]="locale"
+                  [cellTemplate]="customCellTemplate">
+                </mwl-calendar-month-view>
+              </div>
+
+              <div class="c-calendar-note-wrapper">
+                <ul>
+                  <li class="c-calendar-note c-calendar-note--completed">Concluídos</li>
+                  <li class="c-calendar-note c-calendar-note--pending">Pendentes</li>
+                  <li class="c-calendar-note c-calendar-note--today">Hoje</li>
+                  <li class="c-calendar-note c-calendar-note--release-medical">Previsão de alta</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////// -->
+
+    <div class="row center-block;" style="justify-content: center; display:flex" *ngIf="dateShift" (panleft)="dateup()"
+         (panright)="datedown()">
+
+      <div *ngFor="let rc of rulesCalendar">
+
+
+        <div class="col-xs-12" *ngIf="rc.type != 'focus'" (click)="changeDate(rc)">
+          <div [class]="rc.plan">
+            <div *ngIf="rc.plan == 'with-plan'">
+              <div [class]="rc.type">
+                <div class="progress-radius" *ngIf="rc.percent > 0">
+                  <round-progress [current]="rc.percent" [max]="100" [color]="'#FFF'" [background]="''" [radius]="50"
+                                  [stroke]="6" [rounded]="true"
+                                  [clockwise]="false" [responsive]="true" [duration]="1800"
+                                  [animation]="'easeInOutQuart'" class="radius" style="width:50px; height:50px">
+                  </round-progress>
+                  <div class="clearfix"></div>
+                </div>
+                <span class="number">{{rc.day}}</span>
+                <span class="month">{{rc.month}}</span>
+              </div>
+            </div>
+            <div *ngIf="rc.plan == 'without-plan'" class="{{rc.type}} without-plan">
+              <span class="number">{{rc.day}}</span>
+              <span class="month">{{rc.month}}</span>
+            </div>
+            <div class="content-release-medical" *ngIf="rc.alta == true">
+              <div class="content">
+                <span class="desc"> Previsão de Alta</span>
+                <a href="/" class="">Ver plano</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-xs-12 c-calendar" *ngIf="rc.type == 'focus'" id="calendarWidth">
+          <div [class]="rc.plan">
+            <div [class]="('c-calendar__control ' + rc.type + (showFullCalendar ? ' is-open' : '') )">
+              <!-- (click)="showFullCalendar = !showFullCalendar" -->
+              <span class="title">{{rc.weekDay}}</span>
+              <div class="content">
+                <span class="number" style="padding-bottom:5px">{{rc.day}}</span>
+                <span class="month">{{rc.month}}</span>
+                <a class="open-calendar" *ngIf="false">
+                  <img src="/assets/img/tip.png"/>
+                </a>
+              </div>
+            </div>
+            <div class="content-release-medical" *ngIf="rc.alta == true">
+              <div class="content">
+                <span class="desc"> Previsão de Alta</span>
+                <a href="/" class="">Ver plano</a>
+              </div>
+            </div>
+
+            <div class="c-calendar__full" [hidden]="!showFullCalendar">
+              <div class="c-calendar__inner">
+
+                <ng-template #customCellTemplate let-day="day" let-locale="locale">
+                  <div [ngClass]="( 'cal-cell-top ' + getEventsClass( day.events ) )">
+                    <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+                    <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+                  </div>
+                  <div class="cal-events" *ngIf="day.events.length > 0">
+                    <div
+                      class="cal-event"
+                      *ngFor="let event of day.events"
+                      [style.backgroundColor]="event.color.primary"
+                      [ngClass]="event?.cssClass">
+                    </div>
+                  </div>
+                </ng-template>
+
+                <div
+                  class="btn c-calendar__btn c-calendar__btn--prev"
+                  mwlCalendarPreviousView
+                  [view]="view"
+                  [(viewDate)]="viewDate">
+                  Anterior
+                </div>
+                <div class="c-calendar__title">
+                  {{ viewDate | calendarDate:(view + 'ViewTitle'):'pt' }}
+                </div>
+                <div
+                  class="btn c-calendar__btn c-calendar__btn--next"
+                  mwlCalendarNextView
+                  [view]="view"
+                  [(viewDate)]="viewDate">
+                  Próximo
+                </div>
+
+                <mwl-calendar-month-view
+                  [viewDate]="viewDate"
+                  [events]="events"
+                  [locale]="locale"
+                  [cellTemplate]="customCellTemplate">
+                </mwl-calendar-month-view>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="overlay-rules-calendar" [hidden]="!showFullCalendar" (click)="showFullCalendar = !showFullCalendar"></div>

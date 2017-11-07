@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*Fonts*/
+
+@import '/assets/fonts/skolasans/stylesheet.css';
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+/*Scheduler layout*/
+
+@import "component-styles/scheduler.css";
+
+/*Calendar layout*/
+
+@import "component-styles/calendar.css";

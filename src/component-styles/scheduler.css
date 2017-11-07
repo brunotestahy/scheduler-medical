@@ -1,0 +1,383 @@
+/*Cell bgcolor*/
+
+.alert-info {
+  background-color: white;
+}
+
+/*Table header*/
+
+.fc-bootstrap3 {
+  margin-top: -20px;
+}
+
+.fc-bootstrap3 .fc-divider {
+  border-top: 1px solid #dddddd !important;
+}
+
+hr.fc-divider {
+  border-bottom: none;
+  padding: 0;
+}
+
+.fc-toolbar.fc-header-toolbar {
+  margin-bottom: 0;
+}
+
+.fc-toolbar, .fc-head, .fc-day {
+  visibility: hidden;
+}
+
+.fc-view table:first-child {
+  border-left: none;
+  border-right: none;
+}
+
+.table-bordered {
+  background-color: #ffffff;
+}
+
+.table-bordered thead {
+  display: none;
+}
+
+.table-bordered .fc-body tr:first-child td:first-child:not([class^="fc-"]) {
+  border: none;
+}
+
+.fc-bg .table-bordered:first-child tbody:first-child td:first-child {
+  font-family: 'skolasansbold';
+  border: none;
+  color: #241D19;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.fc-row {
+  border-right-width: 0 !important;
+  margin-right: 0 !important;
+}
+
+.fc-ltr .fc-axis {
+  text-align: left;
+}
+
+.fc .fc-axis {
+  border-left: none;
+  padding: 0;
+  width: 8rem !important;
+}
+
+.fc-axis {
+  font-size: 1.3em;
+}
+
+/*Table Body*/
+
+.fc-time-grid .fc-slats .fc-minor td {
+  border-top-style: dashed;
+}
+
+.fc-ltr .fc-time {
+  font-family: 'skolasansbold';
+  text-align: center;
+  padding: 2rem 0 .2rem 0;
+  color: #241D19;
+  font-weight: 900;
+  font-size: 2.2rem;
+}
+
+.fc-minor .fc-axis {
+  padding: .2rem 0 2rem 0;
+}
+
+.fc-content {
+  padding: 1rem;
+}
+
+.fc-content > .fc-time {
+  text-align: left;
+  padding: 4px;
+}
+
+.fc-minor .fc-time::after {
+  content: '30';
+  color: #241D19;
+  font-weight: 900;
+  font-size: 1.8rem;
+  opacity: .3;
+}
+
+/*Schedule's Events layout*/
+
+.fc-ltr .fc-time-grid .fc-event-container {
+  margin: 0 2px !important;
+}
+
+.fc-event {
+  margin: .2rem;
+  border: none;
+}
+
+.fc-content > .fc-time {
+  display: none;
+}
+
+.fc-time-grid-event.fc-allow-mouse-resize .fc-resizer,
+.fc-time-grid-event.fc-selected .fc-resizer,
+.custom-resizer {
+  display: block !important;
+  position: absolute;
+  bottom: -11px;
+  left: 0;
+  right: 0;
+  background: white;
+  width: 4rem;
+  padding: 1rem 0;
+  margin: 0 auto;
+  transform: scale(1, .5);
+  -webkit-transform: scale(1, .5);
+  -moz-transform: scale(1, .5);
+  -ms-transform: scale(1, .5);
+  -o-transform: scale(1, .5);
+  height: 21px;
+  overflow: hidden;
+  line-height: 25px;
+  font-size: 26px;
+  text-align: center;
+  cursor: s-resize;
+  border-radius: .5rem .5rem 0 0;
+}
+
+.fc-time-grid-event.fc-allow-mouse-resize .fc-resizer::after,
+.fc-time-grid-event.fc-selected .fc-resizer::after,
+.custom-resizer::after {
+  content: '\2630';
+  font-stretch: ultra-expanded;
+  color: #beb7b3;
+}
+
+.fc-agenda-view .fc-day-grid .fc-row .fc-content-skeleton {
+  padding-bottom: 0;
+}
+
+.fc-logo-event {
+  height: 100%;
+  width: 40%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 2px solid #ffffff;
+}
+
+.fc-logo-event .logo-family {
+  background: url("/assets/img/VisitaFamilia.png") center center no-repeat;
+  min-height: 1rem;
+  height: 5rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.fc-logo-event .logo-doctor {
+  background: url("/assets/img/MedicoExterno.png") center center no-repeat;
+  min-height: 1rem;
+  height: 10rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.fc-logo-event .logo-rotinahospitalar {
+  background: url("/assets/img/PlanoCuidados.png") center center no-repeat;
+  min-height: 1rem;
+  height: 7rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.fc-logo-event .logo-refeicao {
+  background: url("/assets/img/CafeManha.png") center center no-repeat;
+  min-height: 1rem;
+  height: 7rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.fc-logo-event .logo-outros {
+  height: 5rem;
+  width: 5rem;
+  border: 5px solid #E7CDC7;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fc-logo-event .logo-outros:after {
+  content: '?';
+  font-family: "skolasansbold";
+  font-size: 4rem;
+  color: #9C766A;
+}
+
+.fc-logo-event .logo-description {
+  font-family: 'skolasansmedium';
+  margin-top: .5rem;
+  font-size: calc(5px + 1vh);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.logo-doctor + .logo-description {
+  color: #9BADB5;
+}
+
+.logo-rotinahospitalar + .logo-description {
+  color: #9BADB5;
+}
+
+.logo-family + .logo-description {
+  color: #A68488;
+}
+
+.logo-refeicao + .logo-description {
+  color: #B1A387;
+}
+
+.logo-outros + .logo-description {
+  color: #B1A387;
+}
+
+.know-more-link, .know-more-link:hover {
+  font-family: 'skolasansbold';
+  font-size: 1.5rem;
+  color: #E59A91;
+  cursor: pointer;
+  text-decoration: underline !important;
+}
+
+.fc-day-grid-event {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 6rem;
+}
+
+.fc-day-grid-event .custom-resizer {
+  display: none !important;
+}
+
+.fc-day-grid-event .fc-content {
+  font-family: 'skolasansmedium';
+  font-size: 1.5rem;
+  color: #241D19;
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+}
+
+.fc-time-grid-event {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fc-time-grid-event .fc-content {
+  font-family: 'skolasansmedium';
+  font-size: 1.8rem;
+  color: #241D19;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 60%;
+}
+
+.fc-time-grid-event .fc-content .fc-title {
+  text-align: center;
+}
+
+.event-edit-button {
+  background: url("/assets/img/Edit_Icone.svg");
+  position: absolute;
+  background-size: cover;
+  top: .2rem;
+  right: .5rem;
+  height: 22px;
+  width: 22px;
+  z-index: 2;
+}
+
+.event-delete-button {
+  content: url("/assets/img/Delete_Icone.svg");
+  position: absolute;
+  background-size: cover;
+  top: 2.7rem;
+  right: .5rem;
+  height: 22px;
+  width: 22px;
+  z-index: 2;
+}
+
+/*Standard Label Style*/
+
+.standard-label {
+  font-family: 'skolasansmedium';
+  font-size: 1rem;
+  background-color: darkred;
+  color: #FFFFFF;
+  position: absolute;
+  top: 1.5rem;
+  left: .5rem;
+  padding: .3rem;
+  border-radius: .3rem;
+  text-transform: uppercase;
+}
+
+.fc-day-grid-event .standard-label  {
+  top: .5rem;
+}
+
+.ellipsis-event-title {
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ellipsis-standard-label {
+  left: .2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 2rem;
+}
+
+.ellipsis-know-more-link {
+  width: 4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1rem;
+}

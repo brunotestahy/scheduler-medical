@@ -1,0 +1,34 @@
+<div class="calendar-view col-md-3 text-center">
+  <div class="time">{{clockTime | date: 'HH:mm'}}</div>
+  <div class="date-container">
+    <div class="month col-md-10">
+      <button
+        mwlCalendarPreviousView
+        [(viewDate)]="viewDate"
+        [view]="view"
+        (viewDateChange)="setUpCalendar(true)"
+        class="month-prev">
+      </button>
+      <span>{{viewDate | date: 'MMM'}}</span>
+      <button
+        mwlCalendarNextView
+        [(viewDate)]="viewDate"
+        [view]="view"
+        (viewDateChange)="setUpCalendar(true)"
+        class="month-next">
+      </button>
+    </div>
+    <div class="day">
+      {{viewDate | date: 'd'}}
+    </div>
+    <div class="year">
+      {{viewDate | date: 'y'}}
+    </div>
+  </div>
+  <mwl-calendar-month-view
+    [view]="view"
+    [(viewDate)]="viewDate"
+    [locale]="'pt'"
+    (dayClicked)="onDayClicked($event)">
+  </mwl-calendar-month-view>
+</div>

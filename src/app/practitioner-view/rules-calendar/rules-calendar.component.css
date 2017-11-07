@@ -1,0 +1,361 @@
+/*Rules Calendar*/
+
+#rules_calendar {
+  background-color: #7d746d;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+#rules_calendar a {
+  display: block;
+}
+
+#rules_calendar a:hover {
+  text-decoration: none;
+}
+
+#rules_calendar .with-plan,
+#rules_calendar .without-plan {
+  margin-left: -4px;
+}
+
+#rules_calendar .with-plan .before,
+#rules_calendar .without-plan .before,
+#rules_calendar .with-plan .after,
+#rules_calendar .without-plan .after,
+#rules_calendar .with-plan .release-medical,
+#rules_calendar .without-plan .release-medical {
+  border-radius: 50%;
+  width: 75px;
+  height: 76px;
+  margin: 0 auto;
+}
+
+/*Date Numbers Borders*/
+
+#rules_calendar .with-plan .before:after,
+#rules_calendar .without-plan .before:after,
+#rules_calendar .with-plan .after:after,
+#rules_calendar .without-plan .after:after,
+#rules_calendar .with-plan .release-medical:after,
+#rules_calendar .without-plan .release-medical:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 1px;
+  bottom: 2px;
+  left: 13px;
+  right: 16px;
+  border-radius: 50%;
+  border: .15rem solid #cdc0b9;
+  opacity: .4;
+  cursor: pointer;
+}
+
+#rules_calendar .with-plan .before .number,
+#rules_calendar .without-plan .before .number,
+#rules_calendar .with-plan .after .number,
+#rules_calendar .without-plan .after .number,
+#rules_calendar .with-plan .release-medical .number,
+#rules_calendar .without-plan .release-medical .number,
+#rules_calendar .with-plan .before .month,
+#rules_calendar .without-plan .before .month,
+#rules_calendar .with-plan .after .month,
+#rules_calendar .without-plan .after .month,
+#rules_calendar .with-plan .release-medical .month,
+#rules_calendar .without-plan .release-medical .month {
+  display: block;
+  text-align: center;
+  color: #FFF;
+  line-height: 24px;
+}
+
+/*Date numbers*/
+
+#rules_calendar .with-plan .before .number,
+#rules_calendar .without-plan .before .number,
+#rules_calendar .with-plan .after .number,
+#rules_calendar .without-plan .after .number,
+#rules_calendar .with-plan .release-medical .number,
+#rules_calendar .without-plan .release-medical .number {
+  font-family: 'skolasansregular';
+  font-size: 30px;
+  padding-top: 14px;
+}
+
+#rules_calendar .with-plan .before .month,
+#rules_calendar .without-plan .before .month,
+#rules_calendar .with-plan .after .month,
+#rules_calendar .without-plan .after .month,
+#rules_calendar .with-plan .release-medical .month,
+#rules_calendar .without-plan .release-medical .month {
+  font-family: 'skolasansmedium';
+  font-size: 18px;
+}
+
+#rules_calendar .with-plan .today,
+#rules_calendar .without-plan .today {
+  position: absolute;
+  top: 0;
+  left: 9px;
+  width: 90%;
+  background-color: #FFF;
+  padding: 0 0 10px;
+  border-radius: .2rem;
+}
+
+#rules_calendar .with-plan .today .title,
+#rules_calendar .without-plan .today .title {
+  color: #FFF;
+  background-color: #ce9e93;
+  display: block;
+  text-align: center;
+  font-family: 'skolasansmedium';
+  font-size: 17px;
+  text-transform: uppercase;
+  padding: .1rem 0;
+  line-height: 25px;
+  border-radius: .2rem .2rem 0 0;
+}
+
+#rules_calendar .with-plan .today .number,
+#rules_calendar .without-plan .today .number,
+#rules_calendar .with-plan .today .month,
+#rules_calendar .without-plan .today .month {
+  display: block;
+  color: #3b342e;
+  text-align: center;
+  font-family: 'skolasansblack';
+}
+
+#rules_calendar .with-plan .today .number,
+#rules_calendar .without-plan .today .number {
+  font-size: 45px;
+  line-height: 30px;
+  padding-top: 15px;
+}
+
+#rules_calendar .with-plan .today .month,
+#rules_calendar .without-plan .today .month {
+  font-size: 24px;
+  line-height: 24px;
+}
+
+#rules_calendar .with-plan .today .content,
+#rules_calendar .without-plan .today .content {
+  position: relative;
+}
+
+#rules_calendar .with-plan .today .content .open-calendar,
+#rules_calendar .without-plan .today .content .open-calendar {
+  position: absolute;
+  top: 40px;
+  right: 21px;
+}
+
+#rules_calendar .with-plan .today .content .open-calendar img,
+#rules_calendar .without-plan .today .content .open-calendar img {
+  max-width: 46px;
+  max-height: 25px;
+}
+
+#rules_calendar .with-plan .release-medical,
+#rules_calendar .without-plan .release-medical {
+  background-color: #3b342e;
+}
+
+#rules_calendar .with-plan .release-medical:after,
+#rules_calendar .without-plan .release-medical:after {
+  border: 2px solid #3b342e;
+}
+
+#rules_calendar .with-plan .content-release-medical,
+#rules_calendar .without-plan .content-release-medical {
+  position: relative;
+}
+
+#rules_calendar .with-plan .content-release-medical .content,
+#rules_calendar .without-plan .content-release-medical .content {
+  position: absolute;
+  bottom: -42px;
+  left: -28px;
+  z-index: 999;
+  background-color: #5d544c;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+#rules_calendar .with-plan .content-release-medical .content .desc,
+#rules_calendar .without-plan .content-release-medical .content .desc,
+#rules_calendar .with-plan .content-release-medical .content a,
+#rules_calendar .without-plan .content-release-medical .content a {
+  display: block;
+  font-family: 'skolasansbold';
+  font-size: 15px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#rules_calendar .with-plan .content-release-medical .content .desc,
+#rules_calendar .without-plan .content-release-medical .content .desc {
+  color: #FFF;
+}
+
+#rules_calendar .with-plan .content-release-medical .content a,
+#rules_calendar .without-plan .content-release-medical .content a {
+  color: #ce9e93;
+  text-decoration: underline;
+}
+
+#rules_calendar .without-plan .before:after,
+#rules_calendar .without-plan .after:after {
+  border: 2px solid #bbb4ae;
+  cursor: pointer;
+}
+
+#rules_calendar .progress-radius {
+  position: relative;
+}
+
+#rules_calendar .progress-radius .radius {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.c-calendar {
+  min-width: 150px !important;
+}
+
+.todayShifted {
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  margin: 0 auto;
+  background-color: #fff;
+  align-content: center;
+  cursor: pointer;
+}
+
+.todayShifted:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 3px;
+  bottom: 2px;
+  left: 13px;
+  right: 13px;
+
+}
+
+.todayShifted .month {
+  display: block;
+  text-align: center;
+  color: #3B342E;
+  line-height: 24px;
+}
+
+.todayShifted .number {
+  font-size: 30px;
+  padding-top: 14px;
+  display: block;
+  text-align: center;
+  color: #3B342E;
+  line-height: 24px;
+}
+
+.todayShifted .month {
+  font-family: 'skolasansmedium';
+  font-size: 18px;
+}
+
+.focus {
+  position: absolute;
+  top: 0px;
+  left: 9px;
+  width: 90%;
+  background-color: #EEE9E5;
+  padding: 0 0 10px;
+  border-radius: .2rem;
+}
+
+.focus .title {
+  color: #FFF;
+  background-color: #3B342E;
+  display: block;
+  text-align: center;
+  font-family: 'skolasansmedium';
+  font-size: 17px;
+  text-transform: uppercase;
+  padding: .1rem 0;
+  line-height: 25px;
+  border-radius: .2rem .2rem 0 0;
+}
+
+.focus .number,
+.focus .month {
+  display: block;
+  color: #3b342e;
+  text-align: center;
+  font-family: 'skolasansblack';
+}
+
+.focus .number {
+  font-size: 45px;
+  line-height: 30px;
+  padding-top: 15px;
+}
+
+.focus .month {
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.focus .content {
+  position: relative;
+}
+
+.focus .content .open-calendar {
+  position: absolute;
+  top: 40px;
+  right: 21px;
+}
+
+.focus .content .open-calendar img {
+  max-width: 46px;
+  max-height: 25px;
+}
+
+.notify-badge {
+  position: absolute;
+  background: rgba(205, 159, 146, 1);
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  right: -3px;
+}
+
+.month {
+  text-transform: lowercase;
+}
+
+.todayShifted::after {
+  content: 'hoje';
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: rgba(205, 159, 146, 1);
+  padding: 0px;
+  margin-top: 1px;
+  position: 0px;
+  text-transform: uppercase;
+  position: relative;
+  top: 0rem;
+  left: .0rem;
+  z-index: 999;
+}
