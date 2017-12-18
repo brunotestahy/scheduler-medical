@@ -2,7 +2,7 @@
 
 /*Fonts*/
 
-@import '/assets/fonts/skolasans/stylesheet.css';
+@import './assets/fonts/skolasans/stylesheet.css';
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
@@ -13,3 +13,15 @@
 /*Calendar layout*/
 
 @import "component-styles/calendar.css";
+
+/*Helpers layout*/
+
+@import "component-styles/helpers.css";
+
+/*Growl layout*/
+
+@import "component-styles/growl.css";
+
+/*Scroll Bar layout*/
+
+@import "component-styles/scrollbar.css";

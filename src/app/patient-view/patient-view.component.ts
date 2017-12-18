@@ -1,99 +1,178 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Scheduler } from '../shared/models/scheduler';
-import { PatientService } from '../services/patient.service';
-import { Event } from '../shared/models/event';
-import { AppointmentService } from '../services/appointment.service';
 import { Patient } from '../shared/models/patient';
-import { Appointment } from '../shared/models/appointment';
 import { EnumUserType } from '../shared/enums/user-type.enum';
+import { RefreshService } from '../services/refresh.service';
+import { Subscription } from 'rxjs/Subscription';
+import { IdentificationPatientService } from '../services/identification-patient.service';
+import { Observable } from 'rxjs/Observable';
+
+declare const startApp: any;
+
+const CARE_PLAN_APP_PATH: string = 'careplan://';
+const IDENTIFICATION_APP_PATH: string = 'smartidentification://';
+const SMART_APP_PATH: string = 'smarthosp://';
 
 @Component({
   selector: 'app-patient-view',
   templateUrl: './patient-view.component.html',
   styleUrls: ['./patient-view.component.css']
 })
-export class PatientViewComponent implements OnInit {
+export class PatientViewComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('refresher') refreshElement: ElementRef;
 
+  patientId: string;
+  patient: Patient;
   schedulerConfig: Scheduler = {
     practitioner: {
       thumbnail: {
-        height: '10%',
-        width: '10%',
+        height: 'auto',
+        width: '10rem',
         border: '5px solid #F2D6D3',
-        photo: 'https://www.portalaz.com.br/images/316328/2017%2F06%2F06%2F4ad031ac-f0ce-433a-805f-bcf3140ee1d8%2Ffile'
+        photo: './assets/img/medico.png'
       }
     },
     newEventHeader: {
       active: true,
-      patientName: 'Marcelo'
+      patientName: ''
     },
     userType: EnumUserType.patient // Patient type
   };
 
   isLoading: boolean;
 
-  constructor(private patientService: PatientService,
-              private appointmentService: AppointmentService) {
+  // Subscriptions
+  refreshSubscription: Subscription;
+  autoRefreshSubscription: Subscription;
+
+  // Practitioners linked to this patient
+  practitioners: any;
+
+  constructor(private renderer: Renderer2,
+              private refreshService: RefreshService,
+              private idtPatSrevice: IdentificationPatientService) {
   }
 
   ngOnInit() {
-    this.loadEventsFromPatient();
     this.loadPatient();
+    this.loadGeneralListeners();
+
   }
 
-  loadEventsFromPatient() {
-    const currentDate = new Date();
+  ngAfterViewInit() {
+    this.addFontResizerAttribute();
+  }
 
-    const year = currentDate.getFullYear().toString();
+  ngOnDestroy() {
+    this.unloadGeneralListeners();
+  }
 
-    const month = (currentDate.getUTCMonth() + 1) < 10 ?
-      '0' + (currentDate.getUTCMonth() + 1) :
-      (currentDate.getUTCMonth() + 1).toString();
+  addFontResizerAttribute() {
+    // Add on greeting component on header
+    const greetingElement = document.querySelector('.greeting-message');
 
-    const day = currentDate.getDate() < 10 ?
-      '0' + currentDate.getDate() :
-      currentDate.getDate().toString();
+    this.renderer.setAttribute(greetingElement,  'font-resizer', '');
+    console.log(window.getComputedStyle(greetingElement, null).getPropertyValue('font-size'));
+  }
 
-    console.log(`${year}-${month}-${day}`);
+  loadGeneralListeners() {
+    this.refreshSubscription = this.refreshService.handleRefreshState$
+      .subscribe((shouldRefresh: boolean) => {
+        if (shouldRefresh) {
+          this.renderer.addClass(this.refreshElement.nativeElement, 'refresher-disabled');
+        } else {
+          this.renderer.removeClass(this.refreshElement.nativeElement, 'rotating-refresher');
+          this.renderer.removeClass(this.refreshElement.nativeElement, 'refresher-disabled');
+        }
+      });
 
-    this.schedulerConfig.initialEvents = [
-      {
-        title: 'Meeting Event',
-        start: `${year}-${month}-${day}T06:00:00`,
-        end: `${year}-${month}-${day}T08:00:00`,
-        category: 4,
-        description: 'O paracetamol é geralmente utilizado para o tratamento de gripes' +
-        ' e de resfriados, sendo que as doses recomendadas são consideadas bastante seguras.',
-        videoLink: 'https://www.youtube.com/embed/zpOULjyy-n8?rel=0'
-      },
-      {
-        title: 'Another Event',
-        start: `${year}-${month}-${day}T06:00:00`,
-        end: `${year}-${month}-${day}T07:00:00`,
-        editable: false,
-        category: 3
-      },
-      {
-        title: 'Evento o dia todo',
-        start: `${year}-${month}-${day}T06:00:00`,
-        allDay: true,
-        category: 1
-      }
-    ];
+    // Start auto refresh
+    this.startAutoRefresh();
+  }
+
+  unloadGeneralListeners() {
+    this.refreshSubscription.unsubscribe();
+    this.autoRefreshSubscription.unsubscribe();
   }
 
   loadPatient() {
-    const patientData = JSON.parse(sessionStorage.getItem('patient'));
-    this.schedulerConfig.userData = patientData;
+    const patientData: Patient = JSON.parse(sessionStorage.getItem('patient'))['dto'] || {
+      id: '24281',
+      name: 'Bruno'
+    };
+    this.patient = patientData;
+    this.patientId = JSON.parse(sessionStorage.getItem('patient'))['dto'];
+    this.patientId = this.patientId['id'];
+    this.schedulerConfig.patientData = patientData;
+    this.schedulerConfig.newEventHeader.patientName = patientData.name.split(' ')[0].charAt(0).toUpperCase() +
+      patientData.name.split(' ')[0].slice(1).toLowerCase();
     this.schedulerConfig.onlineMode = true;
-    console.log(patientData);
-    this.appointmentService.getPatientAppointments('24281')
-      .subscribe((response) => {
-          const events = response['dtoList'];
-          console.log(events);
+  }
+
+  startAutoRefresh() {
+    this.autoRefreshSubscription = this.autoRefresher()
+      .subscribe(() => {
+        this.refreshContent();
+      });
+  }
+
+  restartAutoRefresh() {
+    // Restart auto refresh
+    this.autoRefreshSubscription.unsubscribe();
+    this.startAutoRefresh();
+  }
+
+  refreshContent() {
+    console.log(this.refreshElement);
+    this.renderer.addClass(this.refreshElement.nativeElement, 'rotating-refresher');
+
+    this.refreshService.emitRefreshState(true);
+  }
+
+  getCareProviders() {
+    this.idtPatSrevice.getCareProviders(this.patientId)
+      .subscribe(careProviders => {
+          console.log(careProviders);
+          this.practitioners = careProviders;
         },
         (error) => {
-          console.error('Error trying to get patient appointments => ', error);
+          console.error('Error trying to get the doctors for this patient => ', error);
         });
+  }
+
+  // Auto refresher each 30 minutes
+  autoRefresher(): Observable<any> {
+    const minutes = 30;
+    const intervalTime = 1000 * 60 * minutes;
+    return Observable.interval(intervalTime);
+  }
+
+  log(val: any) {
+    console.log(val);
+  }
+
+  onEvaluationClick() {
+    this.openIdentificationApp();
+  }
+
+  openApp(appPath: string) {
+    startApp.set(appPath).start(
+      function(){},
+      function(error) {
+        console.error(error);
+      }
+    );
+  }
+
+  openSmartApp() {
+    return this.openApp(SMART_APP_PATH);
+  }
+
+  openCarePlanApp() {
+    return this.openApp(CARE_PLAN_APP_PATH);
+  }
+
+  openIdentificationApp() {
+    return this.openApp(IDENTIFICATION_APP_PATH);
   }
 }

@@ -1,4 +1,4 @@
 export enum EnumUserType  {
-  patient = 'patient',
-  practitioner = 'practitioner'
+  patient = 1,
+  practitioner
 }

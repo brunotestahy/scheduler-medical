@@ -1,0 +1,7 @@
+
+<svg xmlns='http://www.w3.org/2000/svg' width="100" height="100">
+    <g fill="transparent" stroke-width='6' stroke='#B18982'>
+      <circle cx="50" cy="50" r="40"></circle>
+      <polyline points="56,27 35,50 56,73"></polyline>
+    </g>
+</svg>

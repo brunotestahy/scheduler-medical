@@ -1,3 +1,8 @@
+/*Checkbox layout*/
+@import "../../component-styles/checkbox.css";
+/*Carousel layout*/
+@import "../../component-styles/carousel.css";
+
 /*Enable this for fade animation works*/
 :host {
   display: block;
@@ -23,8 +28,14 @@
 .pro-view {
   font-family: 'skolasansmedium';
   color: #4D4337;
-  font-size: 1.55vw;
+  font-size: 2rem;
   margin: 0 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .pro-view {
+    font-size: 1.3rem;
+  }
 }
 
 .btn-new-event {
@@ -67,7 +78,8 @@
 }
 
 /deep/ .overlay .content {
-  width: 80%;
+  min-width: 70%;
+  max-width: 85%;
 }
 
 /*Add/Edit Modal Style*/
@@ -79,32 +91,56 @@
   margin: 0 0 4rem 0;
 }
 
-.event-add-edit .logo-family {
-  background: url("/assets/img/VisitaFamilia.png") center center no-repeat;
-  min-height: 1rem;
-  height: 8rem;
-  width: 39%;
-  background-size: contain;
-}
-
-.event-add-edit .logo-rotinahospitalar {
-  background: url("/assets/img/PlanoCuidados.png") center center no-repeat;
-  min-height: 1rem;
-  height: 8rem;
-  width: 39%;
-  background-size: contain;
-}
-
 .event-add-edit .logo-refeicao {
-  background: url("/assets/img/CafeManha.png") center center no-repeat;
+  background: url("../../assets/img/refeicao.png") center center no-repeat;
   min-height: 1rem;
   height: 8rem;
   width: 39%;
   background-size: contain;
 }
 
-.event-add-edit .logo-doctor {
-  background: url("/assets/img/MedicoExterno.png") center center no-repeat;
+.event-add-edit .logo-higiene {
+  background: url("../../assets/img/higiene.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-exames {
+  background: url("../../assets/img/exames.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-curativo {
+  background: url("../../assets/img/curativo.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-fisioterapia {
+  background: url("../../assets/img/fisio.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-fonoaudiologia {
+  background: url("../../assets/img/fono.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-medicacao {
+  background: url("../../assets/img/HoraMedicacao.png") center center no-repeat;
   min-height: 1rem;
   height: 8rem;
   width: 70%;
@@ -137,24 +173,36 @@
   color: #A7A5A3;
 }
 
-.category-active-doctor .logo-doctor + .logo-description {
-  color: #9BADB5;
-}
-
-.category-active-rotinahospitalar .logo-rotinahospitalar + .logo-description {
-  color: #9BADB5;
-}
-
 .category-active-refeicao .logo-refeicao + .logo-description {
-  color: #B9B099;
+  color: #a29a80;
 }
 
-.category-active-family .logo-family + .logo-description {
-  color: #A68488;
+.category-active-higiene .logo-higiene + .logo-description {
+  color: #888ca1;
+}
+
+.category-active-exames .logo-exames + .logo-description {
+  color: #7e756e;
+}
+
+.category-active-curativo .logo-curativo + .logo-description {
+  color: #d1a3a3;
+}
+
+.category-active-fisioterapia .logo-fisioterapia + .logo-description {
+  color: #6ca1b7;
+}
+
+.category-active-fonoaudiologia .logo-fonoaudiologia + .logo-description {
+  color: #c18caa;
+}
+
+.category-active-medicacao .logo-medicacao + .logo-description {
+  color: #8ea4a0;
 }
 
 .category-active-outros .logo-outros + .logo-description {
-  color: #A98780;
+  color: #8d8584;
 }
 
 .close-button {
@@ -167,30 +215,15 @@
   border: none;
 }
 
-/deep/ .select-field {
-  border: .19rem dashed rgba(153, 153, 153, .9)  !important;
-  padding: 1px !important;
-}
-
 /deep/ .suggestion-box ul {
   max-height: 200px;
   overflow-y: auto;
 }
 
-.label-categories {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  margin-bottom: 5rem;
-}
-
 .category {
   height: 19rem;
   width: 19rem;
+  flex-shrink: 0;
   background-color: transparent;
   border: 2px solid #E2E1DF;
   position: relative;
@@ -203,44 +236,71 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 0 1rem;
+}
+
+.category:first-of-type {
+  margin-left: 0;
+}
+
+.category:last-of-type {
+  margin-right: 0;
 }
 
 .category:hover {
   cursor: pointer;
 }
 
-.category-active-rotinahospitalar,
 .category-active-refeicao,
-.category-active-family,
-.category-active-doctor,
+.category-active-higiene,
+.category-active-exames,
+.category-active-curativo,
+.category-active-fisioterapia,
+.category-active-fonoaudiologia,
+.category-active-medicacao,
 .category-active-outros {
   border: none;
 }
 
-.category-active-rotinahospitalar {
-  background-color: #EDF1F9;
-}
-
 .category-active-refeicao {
-  background-color: #F7EAC5;
+  background-color: #f3e9c6;
 }
 
-.category-active-family {
-  background-color: #EBD0D2;
+.category-active-higiene {
+  background-color: #e0e3f2;
 }
 
-.category-active-doctor {
-  background-color: #DEF1F9;
+.category-active-exames {
+  background-color: #efe9e4;
+}
+
+.category-active-curativo {
+  background-color: #fae1e1;
+}
+
+.category-active-fisioterapia {
+  background-color: #d3e5ec;
+}
+
+.category-active-fonoaudiologia {
+  background-color: #f2e3eb;
+}
+
+.category-active-medicacao {
+  background-color: #e0f2ee;
 }
 
 .category-active-outros {
-  background-color: #F0EAE6;
+  background-color: #efeeed;
 }
 
-.category-active-rotinahospitalar::after,
 .category-active-refeicao::after,
-.category-active-family::after,
-.category-active-doctor::after,
+.category-active-higiene::after,
+.category-active-exames::after,
+.category-active-curativo::after,
+.category-active-fisioterapia::after,
+.category-active-fonoaudiologia::after,
+.category-active-medicacao::after,
 .category-active-outros::after {
   content: "";
   position: absolute;
@@ -251,24 +311,36 @@
   border: 15px solid;
 }
 
-.category-active-rotinahospitalar::after {
-  border-color: #EDF1F9 transparent transparent transparent;
-}
-
 .category-active-refeicao::after {
-  border-color: #F7EAC5 transparent transparent transparent;
+  border-color: #f3e9c6 transparent transparent transparent;
 }
 
-.category-active-family::after {
-  border-color: #EBD0D2 transparent transparent transparent;
+.category-active-higiene::after {
+  border-color: #e0e3f2 transparent transparent transparent;
 }
 
-.category-active-doctor::after {
-  border-color: #DEF1F9 transparent transparent transparent;
+.category-active-exames::after {
+  border-color: #efe9e4 transparent transparent transparent;
+}
+
+.category-active-curativo::after {
+  border-color: #fae1e1 transparent transparent transparent;
+}
+
+.category-active-fisioterapia::after {
+  border-color: #d3e5ec transparent transparent transparent;
+}
+
+.category-active-fonoaudiologia::after {
+  border-color: #f2e3eb transparent transparent transparent;
+}
+
+.category-active-medicacao::after {
+  border-color: #e0f2ee transparent transparent transparent;
 }
 
 .category-active-outros::after {
-  border-color: #F0EAE6 transparent transparent transparent;
+  border-color: #efeeed transparent transparent transparent;
 }
 
 .event-type-selection {
@@ -277,6 +349,7 @@
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  height: 40px;
 }
 
 .event-type-selection .field {
@@ -284,7 +357,7 @@
 }
 
 .field {
-  border: .19rem dashed rgba(153, 153, 153, .9);
+  border: .14rem dashed rgba(153, 153, 153, .9);
   border-radius: .7rem;
   padding: 1px;
 }
@@ -295,7 +368,7 @@
   border-radius: .5rem;
 }
 
-.field.invalid {
+.field.invalid, .field.ng-invalid {
   border: 1px dashed #ff0000;
 }
 
@@ -310,8 +383,6 @@ label {
 }
 
 .repeat-every-day label, .event-standard label {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   padding-left: 0;
 }
@@ -328,58 +399,21 @@ label {
   display: flex;
 }
 
-.date {
-  width: 35%;
-}
-
 .all-day-check {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  align-items: center;
-  align-self: flex-end;
-  height: 52px;
-}
-
-.standard-all-day-check .checkbox-inline {
-  padding-left: 0 !important;
-}
-
-.checkbox-inline {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
-  font-family: 'skolasansbold';
-  margin-right: .5rem;
-}
-
-.checkbox-inline .field {
-  border: .19rem dashed rgba(153, 153, 153, .9);
-  border-radius: .4rem;
-  padding: 4px;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  height: 2.8rem;
-  width: 2.8rem;
-  justify-content: center;
-  align-items: center;
   margin-left: 1rem;
-  margin-right: .4rem;
+  align-items: flex-end;
+  padding-bottom: 1rem;
+  min-width: 15rem;
 }
 
-.checkbox-inline input {
-  position: relative;
-  height: 2rem;
-  width: 2rem;
-  margin: -2px;
+.all-day-check p-checkbox {
+  justify-content: flex-start;
+  width: 14rem;
 }
 
 .time-start {
@@ -413,6 +447,11 @@ label {
   border-radius: 2px;
 }
 
+.time-error {
+  font-family: 'skolasansmedium';
+  color: #ff0000;
+}
+
 /*Description Detail Modal Style*/
 
 .event-description-detail {
@@ -421,6 +460,7 @@ label {
 
 .event-description-detail .event-title {
   font-family: 'skolasansbold';
+  word-wrap: break-word;
   font-size: 3rem;
   margin: 0 0 4rem 0;
 }
@@ -431,9 +471,10 @@ label {
   color: #9C9591;
 }
 
-/*Loading Style*/
+/*Loading and Error Style*/
 
-.loading {
+.loading,
+.error-warning {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -445,6 +486,10 @@ label {
   border-radius: .5rem;
 }
 
+.error-warning {
+  opacity: 1;
+}
+
 /deep/ .loading-container {
   display: -webkit-box;
   display: -moz-box;
@@ -452,9 +497,66 @@ label {
   display: -webkit-flex;
   display: flex;
   justify-content: center;
-  margin-top: 25%;
+  margin-top: 15%;
 }
 
 /deep/ .main-loading {
   background-color: #949B9F !important;
+}
+
+.carousel-cell {
+  margin-bottom: 35px;
+}
+
+/*Calendar Module custom layout*/
+
+/deep/ .ui-inputtext {
+  width: 12rem;
+  line-height: 46px;
+  height: 46px;
+  text-align: center;
+  font-family: 'skolasansmedium';
+  color: #555;
+  font-size: 1.6rem;
+  border-radius: .5rem;
+}
+
+.date /deep/ .ui-inputtext {
+  width: 20rem;
+}
+
+.time-start /deep/ .ui-datepicker,
+.time-end /deep/ .ui-datepicker {
+  width: 100% !important;
+}
+
+/deep/ .ui-datepicker.ui-widget {
+  top: -275px !important;
+}
+
+.time-start /deep/ .ui-datepicker.ui-widget,
+.time-end /deep/ .ui-datepicker.ui-widget {
+  top: -131px !important;
+}
+
+.time-start /deep/ .ui-timepicker > div,
+.time-end /deep/ .ui-timepicker > div {
+  margin-left: 0 !important;
+}
+
+/deep/ .ui-hour-picker,
+/deep/ .ui-minute-picker,
+/deep/ .ui-separator {
+  font-family: 'skolasansmedium';
+  color: #555;
+  font-size: 1.4rem;
+}
+
+/deep/ .ui-timepicker {
+  padding: 0 !important;
+}
+
+/deep/ .ui-timepicker > div a {
+  font-size: 2.3rem;
+  margin: 1rem 0;
 }

@@ -69,7 +69,7 @@
 }
 
 .alerts-scope__messages li::before {
-  content: url("/assets/img/check.png");
+  content: url("../../assets/img/check.png");
   transform: scale(0.5);
   position: absolute;
   left: -27px;

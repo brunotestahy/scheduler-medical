@@ -37,9 +37,13 @@ export interface Scheduler {
   initialEvents?: Array<Event>;
   updatedEvents?: Array<Event>;
   eventCategoryStyles?: {
-    rotinahospitalar?: EventCategoryStyle;
     refeicao?: EventCategoryStyle;
-    family?: EventCategoryStyle;
+    higiene?: EventCategoryStyle;
+    exames?: EventCategoryStyle;
+    curativo?: EventCategoryStyle;
+    fisioterapia?: EventCategoryStyle;
+    fonoaudiologia?: EventCategoryStyle;
+    medicacao?: EventCategoryStyle;
     outros?: EventCategoryStyle;
   };
   color?: string;
@@ -55,7 +59,8 @@ export interface Scheduler {
   options?: {
     theme?: boolean,
     themeSystem?: string,
-    slotLabelFormat?: string
+    slotLabelFormat?: string,
+    agendaEventMinHeight?: number
   };
   appointmentTypes?: AppointmentType[];
   appointmentTypesFiltered?: AppointmentType[];
@@ -63,5 +68,6 @@ export interface Scheduler {
   appointmentStandard?: AppointmentStandard;
   appointmentList?: AppointmentList[];
   userType?: EnumUserType;
-  userData?: Patient | Practitioner;
+  patientData?: Patient;
+  practitionerData?: Practitioner;
 }

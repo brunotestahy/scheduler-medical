@@ -1,19 +1,43 @@
-<smart-header>
+<smart-header [logoHref]="'index.html'">
   <div col1>
-    <app-greeting [myPatient]="{ name: 'Bruno' }"></app-greeting>
+    <smart-greeting [patient]="schedulerConfig.patientData"></smart-greeting>
   </div>
   <div col3>
-    <app-alerts-scope></app-alerts-scope>
+    <app-alerts-scope [hidden]="true"></app-alerts-scope>
   </div>
   <div col4>
+    <smart-identification [ngStyle]="{'margin-top': '5px'}"
+                          menuHeader="{{'IDENTIFICATION.HEADER' | translate}}"
+                          [menuTransform]="'translate(-620px, 0)'"
+                          [patient]="patient"
+                          width="700px"
+                          height="400px"
+                          (open)="log('load practitioners');"
+                          (evaluationClick)="onEvaluationClick()"
+                          evaluationMessage="Clique aqui para avaliar os enfermeiros que cuidaram de você"
+                          emptyPractitionersMessage="{{'IDENTIFICATION.EMPTY_PRACTITIONERS' | translate}}">
+    </smart-identification>
     <app-ajust-font [ngStyle]="{'margin-top': '7px'}"></app-ajust-font>
+    <div class="refresher" title="{{'patientView.refreshTitle' | translate}}">
+      <img src="./assets/img/refresh.svg"
+           alt="Refresh_Icon"
+           #refresher
+           (click)="restartAutoRefresh(); refreshContent()">
+    </div>
+    <smart-menu style="margin-top: 10px; margin-left: 2rem">
+      <smart-menu-item (click)="$event.preventDefault(); openSmartApp()">{{'MENU.SMART' | translate}}</smart-menu-item>
+      <smart-menu-item (click)="$event.preventDefault(); openCarePlanApp()">{{'MENU.CARE_PLAN' | translate}}</smart-menu-item>
+      <smart-menu-item [active]="true">{{'MENU.SCHEDULE' | translate}}</smart-menu-item>
+      <smart-menu-item (click)="$event.preventDefault(); openIdentificationApp()">{{'MENU.IDENTIFICATION' | translate}}</smart-menu-item>
+    </smart-menu>
   </div>
 </smart-header>
 <div class="container-fluid text-center">
   <div class="row">
     <app-calendar></app-calendar>
-    <div class="col-md-9">
+    <div class="col-md-7">
       <scheduler [customScheduleObject]="schedulerConfig" [loadingActive]="isLoading"></scheduler>
     </div>
+    <care-plan-list [patientId]="patientId"></care-plan-list>
   </div>
 </div>

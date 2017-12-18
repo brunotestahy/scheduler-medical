@@ -76,9 +76,20 @@
   top: .2rem;
 }
 
-.cal-day-active,
-.cal-month-view .cal-cell-row .cal-cell .cal-cell-top:hover {
+.cal-day-active {
   background-color: #c67b6f;
+}
+
+.cal-month-view .cal-cell-row .cal-cell .cal-cell-top:hover {
+  background: none;
+}
+
+.cal-month-view .cal-cell-row .cal-cell .cal-cell-top.cal-day-active:hover {
+  background-color: #c67b6f;
+}
+
+.cal-month-view .cal-cell-row .cal-cell.cal-today .cal-cell-top:hover {
+  background-color: #e8fde7;
 }
 
 .cal-day-active .cal-day-number {

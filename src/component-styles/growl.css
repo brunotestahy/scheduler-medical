@@ -1,0 +1,9 @@
+.ui-growl {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  top: unset;
+  right: unset;
+  transform: translateX(-50%);
+  width: 20em;
+}

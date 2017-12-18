@@ -16,5 +16,9 @@ export interface Event {
   category?: EnumEventCategory;
   type?: string;
   videoLink?: string;
+  repeatEveryDay?: boolean;
+  repeatEveryDayCopy?: boolean;
   standard?: boolean;
+  version?: string;
+  context?: string;
 }

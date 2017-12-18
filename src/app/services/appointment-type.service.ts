@@ -1,38 +1,34 @@
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
-import {Http, RequestOptions} from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { AbstractService } from './abstract.service';
-import {AppointmentType} from '../shared/models/appointment-type';
-
+import { AppointmentType } from '../shared/models/appointment-type';
+import { AbstractService } from 'front-end-common';
 
 @Injectable()
 export class AppointmentTypeService extends AbstractService {
-  private paginationURL: string;
-  //private typeUrl: string;
 
-    constructor(protected http: Http){
-      super(http);
-      this.baseURL = environment.baseURL + environment.appointment.baseURL + environment.appointment.typeUrl;
-      //this.typeUrl = ;
-    }
+  constructor(protected http: Http) {
+    super(http);
+    this.baseURL = environment.appointment.baseURL + environment.appointment.typeUrl;
+  }
 
 
   getTypes(): Observable<any> {
-    return super.get("");
+    return super.get('');
   }
 
   create(appointmentType: AppointmentType): Observable<any> {
-      console.log (this.baseURL);
-      return super.post(appointmentType);
+    console.log(this.baseURL);
+    return super.post(null, appointmentType);
   }
 
   update(id: string, appointmentType: AppointmentType): Observable<any> {
-      return super.put(id, appointmentType);
+    return super.put(id, appointmentType);
   }
 
-  delete(requestOptions: RequestOptions): Observable<any> {
-      return super.delete(requestOptions);
+  deleteAppointmentType(requestOptions: RequestOptions): Observable<any> {
+    return super.delete(null, requestOptions);
   }
 
 }

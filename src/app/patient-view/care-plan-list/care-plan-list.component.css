@@ -1,0 +1,106 @@
+.my-care-plan {
+  margin-top: 0px;
+  font-family: 'skolasansbold';
+  color: #FFFFFF;
+  text-align: left;
+  font-size: 2rem;
+}
+
+.progress-plans {
+  margin: 2rem 0 3rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.progress-indicator{
+  background: #61544c;
+  color: #fff;
+  border-radius: 5px;
+  margin-right: 8px;
+  padding: 2px 10px;
+  font-family: skolasansblack;
+  font-size: 14px;
+  width: 9rem;
+}
+
+/deep/ .progress {
+  height: 20px;
+  margin-bottom: 0;
+  background-color: #e7ded8;
+  border-radius: 11px;
+}
+
+/deep/ .progress-bar {
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+/deep/ .progress:after {
+  content: '';
+  display: block;
+  top: -2px;
+  position: absolute;
+  bottom: -2px;
+  left: 62px;
+  right: -4px;
+  border-radius: 17px;
+  border: 2px dashed #998b82;
+}
+
+.card {
+  width: 100%;
+  min-height: 15rem;
+  background-color: #E7E6E6;
+  border-radius: .6rem;
+  font-family: 'skolasansmedium';
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  position: relative;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border: 1px solid #8d8781;
+  box-sizing: border-box;
+
+}
+
+.card.completed,
+.card.cancelled {
+  background-color: #FFF;
+}
+
+.card-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #fff;
+  color: #8c6c55;
+  padding: 0 .5rem;
+  text-transform: uppercase;
+  font-size: 1vw;
+  font-family: 'skolasansbold';
+}
+
+.card-title.completed,
+.card-title.cancelled {
+  color: #9a8d85;
+  background-color: #eee9e5;
+}
+.card-body {
+  font-size: 1.6rem;
+  width: 90%;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.marked {
+  position: absolute;
+  top: 3px;
+  right: 6px;
+  height: 19px;
+}

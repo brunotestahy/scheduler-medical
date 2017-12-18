@@ -1,8 +1,8 @@
 export interface Period {
-  startDate: {
-    dateTime: string
+  startDate?: {
+    dateTime?: string;
   };
-  endDate: {
-    dateTime: string
+  endDate?: {
+    dateTime?: string
   };
 }

@@ -1,4 +1,4 @@
 export enum EnumNotificationOperation {
-  increment = 'increment',
-  decrement = 'decrement'
+  increment = 1,
+  decrement
 }

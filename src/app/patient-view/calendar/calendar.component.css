@@ -29,15 +29,14 @@
 }
 
 .month-prev, .month-next {
-  background: url("/assets/img/ic_keyboard_arrow_right_48px.svg");
+  background: url("../../../assets/img/arrow_back.svg");
   background-size: cover;
-  height: 2.2rem;
-  width: 2.2rem;
-  border-radius: 50%;
-  border: .2rem solid #615652;
+  height: 2.6rem;
+  width: 2.6rem;
+  border: none;
 }
 
-.month-prev {
+.month-next {
   transform: rotate(-180deg);
 }
 
@@ -66,4 +65,6 @@
   background-color: #949b9f;
   min-height: 20rem;
   border-radius: .5rem;
+  max-width: 25rem;
+  margin: 0 auto;
 }

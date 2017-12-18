@@ -4,21 +4,45 @@
   padding-top: 0 !important;
 }
 
-/deep/ #header_superior .row {
+:host /deep/ #header_superior .row {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
   align-items: center;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 
-/deep/ .header-col:nth-of-type(3) {
-  width: 80%;
+:host /deep/ #logo {
+  margin: 0 10px;
 }
 
-/deep/ .header-col:nth-of-type(4) {
+:host /deep/ smart-header .header-col:nth-of-type(2) {
+  width: 90%;
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end
+}
+
+:host /deep/ smart-header .header-col:nth-of-type(3) {
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end
+}
+
+:host /deep/ .header-col:nth-of-type(4) {
   order: 1;
+  padding: 0 !important;
   display: -webkit-box !important;
   display: -moz-box !important;
   display: -ms-flexbox !important;
@@ -27,20 +51,39 @@
   align-items: center !important;
 }
 
-/deep/ .header-col:nth-of-type(5) .box {
-  min-width: 25rem;
+:host /deep/ .header-col:nth-of-type(5) div[col3] {
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+}
+
+:host /deep/ .header-col:nth-of-type(5) smart-practitioner-name .box {
+  min-width: 30rem;
+}
+
+:host /deep/ smart-menu .wrapper {
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  padding: 0 !important;
+  min-height: 80px;
+  align-items: center;
 }
 
 /*Search Header*/
 
-/deep/ .search-wrapper {
+:host /deep/ .search-wrapper {
   padding: 5rem 50px !important;
 }
 
-/deep/ .search-wrapper .row {
+:host /deep/ .search-wrapper .row {
   justify-content: space-between !important;
 }
 
-/deep/ .search-container {
+:host /deep/ .search-container {
   width: 80% !important;
 }

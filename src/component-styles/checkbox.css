@@ -1,0 +1,48 @@
+p-checkbox {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/deep/ .ui-chkbox {
+  padding: .25rem;
+  border: 0.14rem dashed rgba(153, 153, 153, .9) !important;
+}
+
+/deep/ .ui-chkbox-label {
+  font-family: 'skolasansbold' !important;
+  color: #A99A94 !important;
+  font-size: 1.5rem !important;
+  margin-right: 1rem;
+  margin-bottom: 0 !important;
+  cursor: pointer;
+}
+
+/deep/ .ui-state-active {
+  border-color: rgba(0, 0, 0, 0.16) !important;
+  background: rgb(239, 239, 239) !important;
+  color: #434343 !important;
+}
+
+/deep/ .ui-chkbox-box.ui-state-focus.ui-state-active {
+  background: rgb(239, 239, 239) !important;
+}
+
+/deep/ .ui-chkbox .ui-chkbox-box {
+  width: 1.525em !important;
+  height: 1.525em !important;
+  line-height: 1.125em !important;
+}
+
+/deep/ .fa-check {
+  line-height: 1.425em;
+}
+
+/deep/ .fa-check:before {
+  font-size: 1.2em;
+}
+
+/deep/ .ui-chkbox-box.ui-state-focus, .ui-radiobutton-box.ui-state-focus {
+  box-shadow: none !important;
+}

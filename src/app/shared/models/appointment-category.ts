@@ -4,4 +4,5 @@ export interface AppointmentCategory {
   definition?: string;
   patientAllowable?: boolean;
   unusable?: string;
+  shouldUseDefaultsOnAppointmentListCreation?: boolean;
 }

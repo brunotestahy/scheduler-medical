@@ -1,11 +1,10 @@
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, URLSearchParams} from '@angular/http';
+import { Http, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { AbstractService } from './abstract.service';
 import { Patient } from '../shared/models/patient';
 import { Subject } from 'rxjs/Subject';
-
+import { AbstractService } from 'front-end-common';
 
 @Injectable()
 export class PatientService extends AbstractService {
@@ -15,17 +14,16 @@ export class PatientService extends AbstractService {
   private searchPaginatedURL: string;
   private selectedPatient: Patient;
   private hisURL: string;
-  private admittedURL: string;
   private paginationURL: string;
   private his: string;
   private activitySource = new Subject<any>();
 
   constructor(protected http: Http) {
     super(http);
-    this.baseURL = environment.baseURL + environment.patient.baseURL;
-    this.patientsURL = environment.patient.patientUrl;
-    this.searchURL = environment.patient.searchURL;
-    this.searchPaginatedURL = environment.patient.searchPaginatedURL;
+    this.baseURL = environment.patientSchedule.baseURL;
+    this.patientsURL = environment.patientSchedule.patientUrl;
+    this.searchURL = environment.patientSchedule.searchURL;
+    this.searchPaginatedURL = environment.patientSchedule.searchPaginatedURL;
   }
 
   setLocalPatient(patient) {
@@ -36,17 +34,18 @@ export class PatientService extends AbstractService {
     return this.localPatient;
   }
 
-
   getSelectedPatient(): Patient {
+    this.selectedPatient = JSON.parse(sessionStorage.getItem('patient-selected'));
     return this.selectedPatient;
   }
 
   setSelectedPatient(patient: Patient) {
     this.selectedPatient = patient;
+    sessionStorage.setItem('patient-selected', JSON.stringify(this.selectedPatient));
   }
 
   getAll(): Observable<any> {
-    return super.get(this.patientsURL).timeout(10000);
+    return super.get(this.patientsURL);
   }
 
   searchPatients(names?: string, room?: string, full?: boolean, his?: string, admitted?: boolean): Observable<any> {
@@ -103,5 +102,4 @@ export class PatientService extends AbstractService {
     }
     return options;
   }
-
 }

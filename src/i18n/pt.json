@@ -1,7 +1,26 @@
 {
   "error": {
     "generalMessage": "Erro durante a operação!",
-    "retryButton": "Tente Novamente"
+    "retryButton": "Tente Novamente",
+    "timeInput": "* Preencha os horários corretamente"
+  },
+  "LOGIN": {
+    "TITLE": "Smart Hospitality",
+    "USER_PLACEHOLDER": "Usuário",
+    "PASSWORD_PLACEHOLDER": "Senha",
+    "LOGIN_BUTTON": "Entrar",
+    "AUTH_ERROR_MESSAGE": "Usuário e senha inválidos",
+    "TOKEN_ERROR_MESSAGE": "Ocorreu um erro. Por favor, tente novamente"
+  },
+  "MENU": {
+    "SMART": "Smart Hospitality",
+    "IDENTIFICATION": "Avaliação",
+    "SCHEDULE": "Agenda do Paciente",
+    "CARE_PLAN": "Plano de cuidados"
+  },
+  "NAVIGATION": {
+    "HEALTHPRO": "PROF. SAÚDE",
+    "PROFESSIONAL": "PROFISSIONAL DE SAÚDE"
   },
   "patientView": {
     "eventModal": {
@@ -29,7 +48,8 @@
       },
       "date": "Data",
       "time": "Horário"
-    }
+    },
+    "refreshTitle": "Atualizar Conteúdo"
   },
   "practitionerView": {
     "messageField": {
@@ -53,7 +73,8 @@
     },
     "label": {
       "all": "Todos",
-      "createStandardEvent": "Criar Evento Padrão",
+      "createStandardEvent": "Criar Tipo de Evento",
+      "createStandardEventTitle": "Crie um novo tipo de evento para a agenda.",
       "copyFromYesterday": "Copiar atividades do dia anterior",
       "food": "Refeição",
       "hospitalRoutine": "Rotina Hospitalar",
@@ -61,7 +82,7 @@
       "order": "Ordenar",
       "room": "Quarto",
       "sector": "Setor",
-      "standardButton": "Evento Padrão",
+      "standardButton": "Tipo de Evento",
       "years": "anos"
     }
   },
@@ -84,5 +105,9 @@
       "title": "Título",
       "videoLink": "Link para o vídeo de descrição (copie e cole abaixo)"
     }
+  },
+  "IDENTIFICATION": {
+    "HEADER": "Seus profissionais de saúde",
+    "EMPTY_PRACTITIONERS": "Nenhum profissional encontrado"
   }
 }

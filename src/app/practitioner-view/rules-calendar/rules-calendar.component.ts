@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { RulesCalendarService } from './rules-calendar.service';
-import { CalendarEvent, CalendarDateFormatter } from 'angular-calendar';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { RulesCalendarService } from '../../services/rules-calendar.service';
+import { CalendarDateFormatter } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 
-import { subDays, addDays } from 'date-fns';
 import { Router } from '@angular/router';
 import { ScheduleService } from '../../services/schedule.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-rules-calendar',
@@ -19,7 +19,7 @@ import { ScheduleService } from '../../services/schedule.service';
     RulesCalendarService
   ],
 })
-export class RulesCalendarComponent implements OnInit {
+export class RulesCalendarComponent implements OnInit, OnDestroy {
 
   @Output() date: EventEmitter<Date> = new EventEmitter<Date>();
   @Input() startDateRoute: number;
@@ -29,37 +29,13 @@ export class RulesCalendarComponent implements OnInit {
 
   viewDate: Date;
   view = 'month';
-  locale = 'pt';
   showFullCalendar = false;
 
-  startDate: Date = subDays(new Date(), 6);
-  endDate: Date = addDays(new Date(), 3);
   plan: any;
   dateShift = false;
 
-  events: CalendarEvent[] = [
-    {
-      start: this.startDate,
-      end: this.endDate,
-      title: 'Tratamento',
-      allDay: true,
-      color: {
-        primary: '#1e90ff',
-        secondary: '#D1E8FF'
-      },
-    },
-    {
-      start: this.endDate,
-      end: this.endDate,
-      title: 'Previsão de alta',
-      cssClass: 'event-release-medical',
-      allDay: true,
-      color: {
-        primary: '#1e90ff',
-        secondary: '#D1E8FF'
-      },
-    },
-  ];
+  // Subscriptions
+  requestDateSubscription: Subscription;
 
   constructor(private rulesCalendarService: RulesCalendarService,
               private router: Router,
@@ -67,29 +43,27 @@ export class RulesCalendarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('INICIO RULES-CALENDAR');
-
     // para iniciar o caledario com o shift da rota para a data inicial
-    if ((this.router.url).indexOf('/createplan') !== -1) {
-      this.viewDate = new Date(+this.startDateRoute);
-      this.dateShift = !this.isSameDate(this.viewDate, new Date());
-    } else {
-      this.viewDate = new Date();
-    }
+    this.viewDate = new Date();
     this.loadPlan(this.dateShift, this.viewDate);
+
+    this.loadGeneralListeners();
   }
 
-  getEventsClass(events) {
-    let classes = '';
+  ngOnDestroy() {
+    this.unloadGeneralListeners();
+  }
 
-    if (events.length > 0) {
-      for (const event of events) {
-        if (event.cssClass) {
-          classes += ' ' + event.cssClass;
-        }
-      }
-    }
-    return classes;
+  loadGeneralListeners() {
+    // Pass the current date to the scheduler component
+    this.requestDateSubscription = this.schedulerService.handleDateRequestFromRulesCalendar$
+      .subscribe(() => {
+        this.schedulerService.emitDateChange(this.viewDate);
+      });
+  }
+
+  unloadGeneralListeners() {
+    this.requestDateSubscription.unsubscribe();
   }
 
   loadPlan(dateShift: boolean, viewDate: Date) {
@@ -112,14 +86,14 @@ export class RulesCalendarComponent implements OnInit {
 
   dateup() {
     this.viewDate = new Date(this.viewDate.getTime() + 24 * 60 * 60 * 1000);
-    this.dateShift = this.isSameDate(this.viewDate, new Date());
+    this.dateShift = !this.isSameDate(this.viewDate, new Date());
     this.loadPlan(this.dateShift, this.viewDate);
     this.date.emit(this.viewDate);
   }
 
   datedown() {
     this.viewDate = new Date(this.viewDate.getTime() - 24 * 60 * 60 * 1000);
-    this.dateShift = this.isSameDate(this.viewDate, new Date());
+    this.dateShift = !this.isSameDate(this.viewDate, new Date());
     this.loadPlan(this.dateShift, this.viewDate);
     this.date.emit(this.viewDate);
   }

@@ -82,14 +82,14 @@ hr.fc-divider {
 .fc-ltr .fc-time {
   font-family: 'skolasansbold';
   text-align: center;
-  padding: 2rem 0 .2rem 0;
+  padding: 1.7rem 0 .2rem 0;
   color: #241D19;
   font-weight: 900;
   font-size: 2.2rem;
 }
 
 .fc-minor .fc-axis {
-  padding: .2rem 0 2rem 0;
+  padding: .2rem 0 1.7rem 0;
 }
 
 .fc-content {
@@ -174,37 +174,62 @@ hr.fc-divider {
   justify-content: center;
   align-items: center;
   border-right: 2px solid #ffffff;
+  z-index: 2;
 }
 
-.fc-logo-event .logo-family {
-  background: url("/assets/img/VisitaFamilia.png") center center no-repeat;
+.fc-logo-event .logo-refeicao {
+  background: url("../assets/img/refeicao.png") center center no-repeat;
   min-height: 1rem;
-  height: 5rem;
+  height: 7rem;
   width: 39%;
   background-size: contain;
 }
 
-.fc-logo-event .logo-doctor {
-  background: url("/assets/img/MedicoExterno.png") center center no-repeat;
+.fc-logo-event .logo-higiene {
+  background: url("../assets/img/higiene.png") center center no-repeat;
   min-height: 1rem;
-  height: 10rem;
+  height: 8rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.fc-logo-event .logo-exames {
+  background: url("../assets/img/exames.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.fc-logo-event .logo-curativo {
+  background: url("../assets/img/curativo.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
   width: 70%;
   background-size: contain;
 }
 
-.fc-logo-event .logo-rotinahospitalar {
-  background: url("/assets/img/PlanoCuidados.png") center center no-repeat;
+.fc-logo-event .logo-fisioterapia {
+  background: url("../assets/img/fisio.png") center center no-repeat;
   min-height: 1rem;
-  height: 7rem;
-  width: 39%;
+  height: 8rem;
+  width: 70%;
   background-size: contain;
 }
 
-.fc-logo-event .logo-refeicao {
-  background: url("/assets/img/CafeManha.png") center center no-repeat;
+.fc-logo-event .logo-fonoaudiologia {
+  background: url("../assets/img/fono.png") center center no-repeat;
   min-height: 1rem;
-  height: 7rem;
-  width: 39%;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.fc-logo-event .logo-medicacao {
+  background: url("../assets/img/HoraMedicacao.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
   background-size: contain;
 }
 
@@ -232,29 +257,41 @@ hr.fc-divider {
 .fc-logo-event .logo-description {
   font-family: 'skolasansmedium';
   margin-top: .5rem;
-  font-size: calc(5px + 1vh);
+  font-size: 1.2rem;
   text-transform: uppercase;
   text-align: center;
 }
 
-.logo-doctor + .logo-description {
-  color: #9BADB5;
-}
-
-.logo-rotinahospitalar + .logo-description {
-  color: #9BADB5;
-}
-
-.logo-family + .logo-description {
-  color: #A68488;
-}
-
 .logo-refeicao + .logo-description {
-  color: #B1A387;
+  color: #a29a80;
+}
+
+.logo-higiene + .logo-description {
+  color: #888ca1;
+}
+
+.logo-exames + .logo-description {
+  color: #7e756e;
+}
+
+.logo-curativo + .logo-description {
+  color: #d1a3a3;
+}
+
+.logo-fisioterapia + .logo-description {
+  color: #6ca1b7;
+}
+
+.logo-fonoaudiologia + .logo-description {
+  color: #c18caa;
+}
+
+.logo-medicacao + .logo-description {
+  color: #8ea4a0;
 }
 
 .logo-outros + .logo-description {
-  color: #B1A387;
+  color: #8d8584;
 }
 
 .know-more-link, .know-more-link:hover {
@@ -320,7 +357,7 @@ hr.fc-divider {
 }
 
 .event-edit-button {
-  background: url("/assets/img/Edit_Icone.svg");
+  background: url("../assets/img/Edit_Icone.svg");
   position: absolute;
   background-size: cover;
   top: .2rem;
@@ -331,7 +368,7 @@ hr.fc-divider {
 }
 
 .event-delete-button {
-  content: url("/assets/img/Delete_Icone.svg");
+  content: url("../assets/img/Delete_Icone.svg");
   position: absolute;
   background-size: cover;
   top: 2.7rem;
@@ -346,7 +383,7 @@ hr.fc-divider {
 .standard-label {
   font-family: 'skolasansmedium';
   font-size: 1rem;
-  background-color: darkred;
+  background-color: #60534B;
   color: #FFFFFF;
   position: absolute;
   top: 1.5rem;
@@ -356,7 +393,7 @@ hr.fc-divider {
   text-transform: uppercase;
 }
 
-.fc-day-grid-event .standard-label  {
+.fc-day-grid-event .standard-label {
   top: .5rem;
 }
 
@@ -365,6 +402,15 @@ hr.fc-divider {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.break-event-title {
+  word-break: break-all;
+  width: 75%;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .ellipsis-standard-label {
@@ -380,4 +426,11 @@ hr.fc-divider {
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 1rem;
+}
+
+/*Passed time slot layout*/
+
+.passed-time {
+  background: #cccccc73;
+  opacity: .6;
 }

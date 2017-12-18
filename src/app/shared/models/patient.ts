@@ -10,13 +10,17 @@ export interface Patient {
     age?: number
   };
   email?: string;
+  hisAdtId?: string;
   mobilePhone?: string;
   photo?: string;
   login?: string;
   room?: string;
-  hisAdtId?: string;
+  roomId?: string;
+  roomDisplay?: string;
+  sectorId?: string;
+  sectorDisplay?: string;
   careProviderIds?: string;
   careProviders?: string;
   cpf?: string;
-  searchfield: string;
+  searchfield?: string;
 }

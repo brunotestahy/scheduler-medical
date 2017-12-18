@@ -1,11 +1,27 @@
-<smart-header>
-  <div col2></div>
+<smart-header [logoHref]="'index.html'">
+  <div col2>
+  </div>
   <div col3>
-    <smart-practitioner-name practitionerName="Bruno Testahy"
-                             title="Profissional de Saúde"></smart-practitioner-name>
+    <smart-practitioner-name practitionerName="{{practitionerName}}"
+                             title="{{ 'NAVIGATION.PROFESSIONAL' | translate }}">
+    </smart-practitioner-name>
+    <smart-logout class="logout" label="sair"></smart-logout>
   </div>
   <div col4>
-    <app-ajust-font [ngStyle]="{'margin-top': '7px'}"></app-ajust-font>
+    <smart-menu class="menu">
+      <smart-menu-item href="{{getSmartPath()}}">
+        {{'MENU.SMART' | translate}}
+      </smart-menu-item>
+      <smart-menu-item href="{{getCarePlanPath()}}">
+        {{'MENU.CARE_PLAN' | translate}}
+      </smart-menu-item>
+      <smart-menu-item [active]="true">
+        {{'MENU.SCHEDULE' | translate}}
+      </smart-menu-item>
+      <smart-menu-item href="{{getIdentificationPath()}}">
+        {{'MENU.IDENTIFICATION' | translate}}
+      </smart-menu-item>
+    </smart-menu>
   </div>
 </smart-header>
 <app-rules-calendar></app-rules-calendar>

@@ -1,0 +1,25 @@
+<div *ngIf="patientCareplan?.activities" class="calendar-view col-md-2 text-center"
+   title="Abrir meu Plano de Cuidados">
+  <h3 class="my-care-plan"
+    [innerHTML]="headerLabel">
+  </h3>
+  <div class="progress-plans">
+    <span class="progress-indicator" [class]>{{done}}/{{qtd}}</span>
+    <progressbar [value]="percent" [type]=""></progressbar>
+  </div>
+  <div style="height: 1000px; overflow-y: auto;">
+    <div *ngFor="let activity of patientCareplan?.activities | datePipe: activeDay" class="card {{activity.status}}"  (click)="openCarePlan()">
+        <img src="assets/img/alright_filled.png" class="marked" *ngIf="activity.status == 'completed'">
+        <img src="assets/img/non-compliance_filled.png" class="marked" *ngIf="activity.status == 'cancelled'">
+      <span class="card-title {{activity.status}}">
+        {{activity.categoryDisplay}}
+      </span>
+      <div class="card-body">
+        {{activity.typeDisplay}}
+      </div>
+    </div>
+  </div>
+</div>
+<h3 *ngIf="!patientCareplan?.activities" class="my-care-plan"
+  [innerHTML]="headerLabelNoCareplan">
+</h3>

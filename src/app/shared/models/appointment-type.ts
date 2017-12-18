@@ -5,14 +5,15 @@ export interface AppointmentType {
   system?: string;
   abstract?: boolean;
   code?: string;
-  display: string;
-  definition: string;
-  unusable: boolean;
-  category: {
-    system: string,
-    code: string
+  display?: string;
+  definition?: string;
+  unusable?: boolean;
+  category?: {
+    system?: string,
+    code?: string
   };
-  videoLink: string;
-  standardPeriod: Period;
-  allDayLong: boolean;
+  videoLink?: string;
+  standardPeriod?: Period;
+  allDayLong?: boolean;
+  version?: string;
 }

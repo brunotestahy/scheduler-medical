@@ -1,3 +1,13 @@
+/*Checkbox layout*/
+
+@import "../../../component-styles/checkbox.css";
+
+/*Carousel layout*/
+
+@import "../../../component-styles/carousel.css";
+
+/*Patient List Style*/
+
 /deep/ .search-field .suggestion-box {
   display: none !important;
 }
@@ -39,6 +49,10 @@
 
 .filter-selection .form-group {
   margin-bottom: 0;
+}
+
+.filter-selection .form-group:first-of-type {
+  margin-right: 1rem;
 }
 
 .filter-selection label {
@@ -85,8 +99,23 @@
   display: -webkit-flex;
   display: flex;
   flex-direction: column;
-  width: 100%;
   cursor: pointer;
+  position: relative;
+}
+
+/deep/ .card [content] {
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 100%;
+  position: unset !important;
+  transform: unset !important;
 }
 
 /deep/ .card:active {
@@ -105,7 +134,9 @@
 .room {
   font-family: 'skolasansbold';
   background: #FFFFFF;
-  width: 80%;
+  position: absolute;
+  top: 10%;
+  width: 40%;
   margin: 0 auto 2rem auto;
   padding: .2rem;
   text-transform: uppercase;
@@ -122,22 +153,6 @@
   font-family: 'skolasansmedium';
   color: #977962;
   margin-top: .5rem;
-}
-
-.arrow-down {
-  background: url("/assets/img/ic_keyboard_arrow_right_48px.svg");
-  background-size: cover;
-  height: 2.2rem;
-  width: 2.2rem;
-  border-radius: 50%;
-  border: .1rem solid #615652;
-  transform: rotate(90deg);
-  transition: transform .2s;
-  margin-left: 1rem;
-}
-
-.arrow-up {
-  transform: rotate(-90deg);
 }
 
 /deep/ .loading-container, .async-error {
@@ -179,8 +194,9 @@
   z-index: 1000 !important;
 }
 
-/deep/ .overlay .content {
-  width: 80%;
+:host /deep/ .overlay .content {
+  min-width: 55%;
+  max-width: 80%;
 }
 
 /*Add Modal Style*/
@@ -188,36 +204,61 @@
 .event-add-edit .title {
   font-family: 'skolasansbold';
   font-size: 3rem;
+  word-wrap: break-word;
   text-align: center;
   margin: 0 0 4rem 0;
 }
 
-.event-add-edit .logo-family {
-  background: url("/assets/img/VisitaFamilia.png") center center no-repeat;
-  min-height: 1rem;
-  height: 8rem;
-  width: 39%;
-  background-size: contain;
-}
-
-.event-add-edit .logo-rotinahospitalar {
-  background: url("/assets/img/PlanoCuidados.png") center center no-repeat;
-  min-height: 1rem;
-  height: 8rem;
-  width: 39%;
-  background-size: contain;
-}
-
 .event-add-edit .logo-refeicao {
-  background: url("/assets/img/CafeManha.png") center center no-repeat;
+  background: url("../../../assets/img/refeicao.png") center center no-repeat;
   min-height: 1rem;
   height: 8rem;
   width: 39%;
   background-size: contain;
 }
 
-.event-add-edit .logo-doctor {
-  background: url("/assets/img/MedicoExterno.png") center center no-repeat;
+.event-add-edit .logo-higiene {
+  background: url("../../../assets/img/higiene.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-exames {
+  background: url("../../../assets/img/exames.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-curativo {
+  background: url("../../../assets/img/curativo.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-fisioterapia {
+  background: url("../../../assets/img/fisio.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-fonoaudiologia {
+  background: url("../../../assets/img/fono.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-medicacao {
+  background: url("../../../assets/img/HoraMedicacao.png") center center no-repeat;
   min-height: 1rem;
   height: 8rem;
   width: 70%;
@@ -250,28 +291,40 @@
   color: #A7A5A3;
 }
 
-.category-active-doctor .logo-doctor + .logo-description {
-  color: #9BADB5;
-}
-
-.category-active-rotinahospitalar .logo-rotinahospitalar + .logo-description {
-  color: #9BADB5;
-}
-
 .category-active-refeicao .logo-refeicao + .logo-description {
-  color: #B9B099;
+  color: #a29a80;
 }
 
-.category-active-family .logo-family + .logo-description {
-  color: #A68488;
+.category-active-higiene .logo-higiene + .logo-description {
+  color: #888ca1;
+}
+
+.category-active-exames .logo-exames + .logo-description {
+  color: #7e756e;
+}
+
+.category-active-curativo .logo-curativo + .logo-description {
+  color: #d1a3a3;
+}
+
+.category-active-fisioterapia .logo-fisioterapia + .logo-description {
+  color: #6ca1b7;
+}
+
+.category-active-fonoaudiologia .logo-fonoaudiologia + .logo-description {
+  color: #c18caa;
+}
+
+.category-active-medicacao .logo-medicacao + .logo-description {
+  color: #8ea4a0;
 }
 
 .category-active-outros .logo-outros + .logo-description {
-  color: #A98780;
+  color: #8d8584;
 }
 
 .close-button {
-  background: url('/assets/img/ic_close_24px.svg') no-repeat;
+  background: url('../../../assets/img/ic_close_24px.svg') no-repeat;
   height: 22px;
   width: 22px;
   position: absolute;
@@ -280,30 +333,15 @@
   border: none;
 }
 
-/deep/ .select-field {
-  border: .19rem dashed rgba(153, 153, 153, .9)  !important;
-  padding: 1px !important;
-}
-
 /deep/ .suggestion-box ul {
   max-height: 200px;
   overflow-y: auto;
 }
 
-.label-categories {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  margin-bottom: 5rem;
-}
-
 .category {
   height: 19rem;
   width: 19rem;
+  flex-shrink: 0;
   background-color: transparent;
   border: 2px solid #E2E1DF;
   position: relative;
@@ -316,44 +354,71 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 0 1rem;
+}
+
+.category:first-of-type {
+  margin-left: 0;
+}
+
+.category:last-of-type {
+  margin-right: 0;
 }
 
 .category:hover {
   cursor: pointer;
 }
 
-.category-active-rotinahospitalar,
 .category-active-refeicao,
-.category-active-family,
-.category-active-doctor,
+.category-active-higiene,
+.category-active-exames,
+.category-active-curativo,
+.category-active-fisioterapia,
+.category-active-fonoaudiologia,
+.category-active-medicacao,
 .category-active-outros {
   border: none;
 }
 
-.category-active-rotinahospitalar {
-  background-color: #EDF1F9;
-}
-
 .category-active-refeicao {
-  background-color: #F7EAC5;
+  background-color: #f3e9c6;
 }
 
-.category-active-family {
-  background-color: #EBD0D2;
+.category-active-higiene {
+  background-color: #e0e3f2;
 }
 
-.category-active-doctor {
-  background-color: #DEF1F9;
+.category-active-exames {
+  background-color: #efe9e4;
+}
+
+.category-active-curativo {
+  background-color: #fae1e1;
+}
+
+.category-active-fisioterapia {
+  background-color: #d3e5ec;
+}
+
+.category-active-fonoaudiologia {
+  background-color: #f2e3eb;
+}
+
+.category-active-medicacao {
+  background-color: #e0f2ee;
 }
 
 .category-active-outros {
-  background-color: #F0EAE6;
+  background-color: #efeeed;
 }
 
-.category-active-rotinahospitalar::after,
 .category-active-refeicao::after,
-.category-active-family::after,
-.category-active-doctor::after,
+.category-active-higiene::after,
+.category-active-exames::after,
+.category-active-curativo::after,
+.category-active-fisioterapia::after,
+.category-active-fonoaudiologia::after,
+.category-active-medicacao::after,
 .category-active-outros::after {
   content: "";
   position: absolute;
@@ -364,28 +429,40 @@
   border: 15px solid;
 }
 
-.category-active-rotinahospitalar::after {
-  border-color: #EDF1F9 transparent transparent transparent;
-}
-
 .category-active-refeicao::after {
-  border-color: #F7EAC5 transparent transparent transparent;
+  border-color: #f3e9c6 transparent transparent transparent;
 }
 
-.category-active-family::after {
-  border-color: #EBD0D2 transparent transparent transparent;
+.category-active-higiene::after {
+  border-color: #e0e3f2 transparent transparent transparent;
 }
 
-.category-active-doctor::after {
-  border-color: #DEF1F9 transparent transparent transparent;
+.category-active-exames::after {
+  border-color: #efe9e4 transparent transparent transparent;
+}
+
+.category-active-curativo::after {
+  border-color: #fae1e1 transparent transparent transparent;
+}
+
+.category-active-fisioterapia::after {
+  border-color: #d3e5ec transparent transparent transparent;
+}
+
+.category-active-fonoaudiologia::after {
+  border-color: #f2e3eb transparent transparent transparent;
+}
+
+.category-active-medicacao::after {
+  border-color: #e0f2ee transparent transparent transparent;
 }
 
 .category-active-outros::after {
-  border-color: #F0EAE6 transparent transparent transparent;
+  border-color: #efeeed transparent transparent transparent;
 }
 
 .field {
-  border: .19rem dashed rgba(153, 153, 153, .9);
+  border: .14rem dashed rgba(153, 153, 153, .9);
   border-radius: .7rem;
   padding: 1px;
 }
@@ -410,95 +487,14 @@ label {
   font-size: 1.5rem;
 }
 
-.category-time {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-}
-
-.date {
-  width: 35%;
-}
-
-.all-day-check {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
-  align-self: flex-end;
-  height: 52px;
-}
-
-.event-standard .checkbox-inline {
-  padding-left: 0 !important;
-}
-
-.checkbox-inline {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
-  font-family: 'skolasansbold';
-  margin-right: .5rem;
-}
-
-.checkbox-inline .field {
-  border: .19rem dashed rgba(153, 153, 153, .9);
-  border-radius: .4rem;
-  padding: 4px;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  height: 2.8rem;
-  width: 2.8rem;
-  justify-content: center;
-  align-items: center;
-  margin-left: 1rem;
-  margin-right: .4rem;
-}
-
-.checkbox-inline input {
-  position: relative;
-  height: 2rem;
-  width: 2rem;
-  margin: -2px;
-}
-
-.time-start {
-  margin-left: 2rem;
-}
-
-.time-until-label {
-  padding: 2rem 2rem .8rem 2rem;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: flex-end;
-}
-
-.time-end {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: flex-end;
-}
-
 .btn {
   font-family: 'skolasansbold';
   background-color: #DF9F93;
   color: #ffffff;
   text-transform: uppercase;
   border-radius: 2px;
+}
+
+.carousel-cell {
+  margin-bottom: 35px;
 }

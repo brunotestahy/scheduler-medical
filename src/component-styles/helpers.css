@@ -1,0 +1,6 @@
+/*General helper classes*/
+
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+}

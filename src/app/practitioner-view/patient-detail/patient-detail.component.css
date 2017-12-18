@@ -1,3 +1,20 @@
+/*Checkbox layout*/
+
+@import "../../../component-styles/checkbox.css";
+
+p-checkbox {
+  flex-direction: row;
+}
+
+.standard-time /deep/ .ui-chkbox-label {
+  margin-left: .5rem;
+  color: #B1ACA7 !important;
+  margin-right: 1rem !important;
+  cursor: pointer !important;
+}
+
+/*Patient Detail Style*/
+
 .patient-detail-bar {
   min-height: 100px;
   background-color: #60534B;
@@ -27,7 +44,7 @@
 .room {
   font-family: 'skolasansbold';
   background: #FFFFFF;
-  width: 16rem;
+  width: 10rem;
   margin: 0 0 .5rem 0;
   font-size: 1.4rem;
   padding: .2rem;
@@ -41,7 +58,7 @@
   font-size: 2rem;
   line-height: 2.4rem;
   color: #FFFFFF;
-  overflow-x: hidden;
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -52,7 +69,7 @@
 }
 
 .back-button {
-  background: url("/assets/img/ic_keyboard_arrow_right_clear.svg");
+  background: url("../../../assets/img/ic_keyboard_arrow_right_clear.svg");
   background-size: cover;
   height: 2.2rem;
   width: 2.2rem;
@@ -80,44 +97,6 @@
   font-family: 'skolasansregular';
   color: #FFFFFF;
   margin-right: 1rem;
-}
-
-.checkbox-inline {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
-  -ms-flex-direction: row-reverse;
-  -webkit-flex-direction: row-reverse;
-  font-family: 'skolasansbold';
-  color: #BBB1A9;
-  margin-right: .5rem;
-}
-
-.checkbox-inline .field {
-  border: 1px dashed #fff;
-  border-radius: .4rem;
-  padding: 4px;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  height: 2.8rem;
-  width: 2.8rem;
-  justify-content: center;
-  align-items: center;
-  margin-right: .4rem;
-}
-
-.checkbox-inline input {
-  position: relative;
-  height: 2.4rem;
-  width: 2.4rem;
-  margin: -2px;
 }
 
 .messenger-container {

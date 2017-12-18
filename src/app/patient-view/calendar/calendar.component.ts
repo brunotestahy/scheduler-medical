@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/Rx';
@@ -11,16 +11,21 @@ import { ScheduleService } from '../../services/schedule.service';
 })
 export class CalendarComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  viewDate: Date = new Date();
+  viewDate: Date;
   view: string = 'month';
-  clockTime: Date = new Date();
+  clockTime: Date;
   clockSubscription: Subscription;
 
   constructor(private renderer: Renderer2,
-              private scheduleService: ScheduleService) {
+              private scheduleService: ScheduleService,
+              private changeDetector: ChangeDetectorRef) {
   }
 
   ngOnInit() {
+    // Initialize Date variables
+    this.viewDate = new Date();
+    this.clockTime = new Date();
+
     this.startClock();
   }
 
@@ -35,14 +40,13 @@ export class CalendarComponent implements OnInit, OnDestroy, AfterViewInit {
 
   setUpCalendar(onlyMonthChange: boolean = false) {
     console.log(this.viewDate);
-    // This timeout wait the calendar rendering to apply the changes
-    setTimeout(() => {
-      this.fixWeekDaysName();
-      this.loadDayListeners();
-      if (onlyMonthChange) {
-        this.turnDateActive();
-      }
-    }, 0);
+    // Wait the calendar rendering to apply the changes
+    this.changeDetector.detectChanges();
+    this.fixWeekDaysName();
+    this.loadDayListeners();
+    if (onlyMonthChange) {
+      this.turnDateActive();
+    }
   }
 
   fixWeekDaysName() {
@@ -62,7 +66,6 @@ export class CalendarComponent implements OnInit, OnDestroy, AfterViewInit {
           this.renderer.removeClass(dayCells[j], 'cal-day-active');
         }
         this.renderer.addClass(dayCells[i], 'cal-day-active');
-        console.log(dayCells[i]);
       });
     }
   }

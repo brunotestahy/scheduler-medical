@@ -5,7 +5,7 @@
          [ngClass]="showNotices ? 'alert-icon-clicked' : ''"
          (click)="badgeCounters.notice > 0 ? showNotices = !showNotices : ''"
          #noticesLink>
-        <img src="/assets/img/bell.png"><span class="badge">{{badgeCounters.notice > 0 ? badgeCounters.notice : ''}}</span>
+        <img src="./assets/img/bell.png"><span class="badge">{{badgeCounters.notice > 0 ? badgeCounters.notice : ''}}</span>
       </a>
 
       <div class="alerts-scope__details"
@@ -33,7 +33,7 @@
          [ngClass]="showSafety ? 'alert-icon-clicked' : ''"
          (click)="badgeCounters.safety > 0 ? showSafety = !showSafety : ''"
          #safetyLink>
-        <img src="/assets/img/lock.png"><span class="badge">{{badgeCounters.safety > 0 ? badgeCounters.safety : ''}}</span>
+        <img src="./assets/img/lock.png"><span class="badge">{{badgeCounters.safety > 0 ? badgeCounters.safety : ''}}</span>
       </a>
 
       <div class="alerts-scope__details"
@@ -56,7 +56,7 @@
          [ngClass]="showAllergies ? 'alert-icon-clicked' : ''"
          (click)="badgeCounters.allergy > 0 ? showAllergies = !showAllergies : ''"
          #allergyLink>
-        <img src="/assets/img/forbidden.png"><span class="badge">{{badgeCounters.allergy > 0 ? badgeCounters.allergy : ''}}</span>
+        <img src="./assets/img/forbidden.png"><span class="badge">{{badgeCounters.allergy > 0 ? badgeCounters.allergy : ''}}</span>
       </a>
 
       <div class="alerts-scope__details alerts-scope__details--auto-width"
@@ -79,7 +79,7 @@
          [ngClass]="showInfos ? 'alert-icon-clicked' : ''"
          (click)="badgeCounters.info > 0 ? showInfos = !showInfos : ''"
          #infoLink>
-        <img src="/assets/img/info.png"><span class="badge">{{badgeCounters.info > 0 ? badgeCounters.info : ''}}</span>
+        <img src="./assets/img/info.png"><span class="badge">{{badgeCounters.info > 0 ? badgeCounters.info : ''}}</span>
       </a>
 
       <div class="alerts-scope__details"

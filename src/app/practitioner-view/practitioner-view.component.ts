@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-practitioner-view',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PractitionerViewComponent implements OnInit {
 
-  constructor() { }
+  practitionerName: string;
 
-  ngOnInit() {
+  constructor() {
   }
 
+  ngOnInit() {
+    this.practitionerName = JSON.parse(sessionStorage.getItem('employee')) &&
+    JSON.parse(sessionStorage.getItem('employee'))['dto'] ?
+      JSON.parse(sessionStorage.getItem('employee'))['dto']['fullName'] : '';
+  }
+
+  getCarePlanPath() {
+    return environment.carePlanPage;
+  }
+
+  getSmartPath() {
+    return environment.smartPage;
+  }
+
+  getIdentificationPath() {
+    return environment.identificationPage;
+  }
 }

@@ -1,6 +1,10 @@
 export enum EnumEventCategory {
-  rotinahospitalar = 1,
-  refeicao,
-  family,
+  refeicao = 1,
+  higiene,
+  exames,
+  curativo,
+  fisioterapia,
+  fonoaudiologia,
+  medicacao,
   outros
 }

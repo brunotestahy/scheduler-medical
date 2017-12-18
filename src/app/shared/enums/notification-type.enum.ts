@@ -1,6 +1,6 @@
 export enum EnumNotificationType {
-  notice = 'notice',
-  safety = 'safety',
-  allergy = 'allergy',
-  info = 'info'
+  notice = 1,
+  safety,
+  allergy,
+  info
 }

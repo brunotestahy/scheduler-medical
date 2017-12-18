@@ -2,6 +2,8 @@ import { Period } from './period';
 
 export interface Appointment {
   id?: string;
+  allDayLong?: boolean;
+  context?: string;
   status?: string;
   type?: string;
   description?: string;
@@ -12,4 +14,6 @@ export interface Appointment {
   practitionersId?: any[];
   motiveRef?: any;
   motive?: any;
+  version?: string;
+  repetitionPeriod?: Period;
 }
