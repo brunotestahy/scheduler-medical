@@ -23,6 +23,7 @@ export class PatientService extends AbstractService {
     this.baseURL = environment.patientSchedule.baseURL;
     this.patientsURL = environment.patientSchedule.patientUrl;
     this.searchURL = environment.patientSchedule.searchURL;
+    this.his = environment.his;
     this.searchPaginatedURL = environment.patientSchedule.searchPaginatedURL;
   }
 

@@ -102,6 +102,7 @@ export class PatientListComponent implements OnInit {
     }
   };
 
+  // Input variables
   inputModels = {
     title: '',
     description: '',
@@ -225,6 +226,7 @@ export class PatientListComponent implements OnInit {
           this.selectedRoomSectorObject = this.roomSectors[0];
           this.isloaded = true;
 
+          // Call the Patient searcher immediately, but only in the first time
           this.patientSearchSubject.next();
         },
         error => {
@@ -233,6 +235,7 @@ export class PatientListComponent implements OnInit {
         });
   }
 
+  // Bring all the patients
   getAllPatientCards() {
     return this.patientService.searchPatients(null, null, null, null, true);
   }
@@ -260,6 +263,7 @@ export class PatientListComponent implements OnInit {
     this.flkty.destroy();
   }
 
+  // Load the carousel
   carouselLoader() {
     const elem = document.querySelector('.main-carousel');
     this.flkty = new Flickity(elem, {
@@ -281,7 +285,7 @@ export class PatientListComponent implements OnInit {
       this.modalConfig.categoryEventStyle.selectedCategory = categoryCode;
     });
 
-    // Find index to select on carousel
+    // Find index to select the slide on carousel
     const newIndex: number = this.appointmentsCategory
       .findIndex(category => category.code === this.modalConfig.categoryEventStyle.selectedCategory);
 
@@ -292,6 +296,7 @@ export class PatientListComponent implements OnInit {
     this.renderer.setStyle(wrapperElement, 'padding-top', '20px');
   }
 
+  // Navigate to the correct slide
   goToSlide(index: number, category: AppointmentCategory) {
     this.modalConfig.categoryEventStyle.selectedCategory = category.code;
     this.flkty.select(index);
@@ -305,12 +310,14 @@ export class PatientListComponent implements OnInit {
     this.modalConfig.active = true;
   }
 
+  // Reload the patient cards when an error occurred
   retryAsyncOpertion() {
     this.isAsyncError = false;
     this.isLoading = true;
     this.getAllPatientCards();
   }
 
+  // Format the patient's age to display on the view
   calculatePatientAge() {
     this.patients.forEach(patient => {
       if (patient.birthDate.dateTime) {
@@ -328,6 +335,7 @@ export class PatientListComponent implements OnInit {
     });
   }
 
+  // Navigate to the patient detail page
   showPatientDetail(patient: Patient) {
     // Save the input value on search header
     sessionStorage.setItem('filter-input', JSON.stringify(this.searchHeaderElement['inputElement']['nativeElement']['value']));
@@ -336,6 +344,7 @@ export class PatientListComponent implements OnInit {
     this.router.navigate(['/practitioner/patient', patient.id]);
   }
 
+  // Emit a new search passing the new parameters
   updateSuggestions() {
     this.isLoading = true;
     this.requestError = false;
@@ -364,6 +373,7 @@ export class PatientListComponent implements OnInit {
     );
   }
 
+  // Create an appointment type object
   buildStandardAppointmentTypeObject(): AppointmentType {
     return {
       display: this.inputModels.title,
@@ -378,6 +388,7 @@ export class PatientListComponent implements OnInit {
     };
   }
 
+  // Process all the information about rooms, sectors and update every patient, but only once
   afterSearchProcessing() {
     this.hasGeneralError = false;
     this.isLoadedProcessing = false;
@@ -425,6 +436,7 @@ export class PatientListComponent implements OnInit {
     }
   }
 
+  // General error handling during http calls
   generalErrorHandle() {
     // this.patients = this.fakeData.dtoList;
     this.calculatePatientAge();
@@ -433,6 +445,7 @@ export class PatientListComponent implements OnInit {
     this.hasGeneralError = true;
   }
 
+  // Return the patient's age from his date of birth
   getAge(birthday: string): number {
     const today = new Date();
     const birthdayDate: Date = new Date(birthday);
@@ -448,6 +461,7 @@ export class PatientListComponent implements OnInit {
     return today.getFullYear() - birthdayDate.getFullYear() - thisYear;
   }
 
+  // Save the filter options on session storage
   saveFilterOptions() {
     if (this.orderBySelectValue) {
       sessionStorage.setItem('order-select', JSON.stringify(this.orderBySelectValue));

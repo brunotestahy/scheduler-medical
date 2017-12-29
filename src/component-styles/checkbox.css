@@ -45,4 +45,6 @@ p-checkbox {
 
 /deep/ .ui-chkbox-box.ui-state-focus, .ui-radiobutton-box.ui-state-focus {
   box-shadow: none !important;
+  background: transparent;
+  border-color: rgba(0, 0, 0, 0.16) !important;
 }

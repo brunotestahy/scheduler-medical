@@ -6,5 +6,6 @@ export enum EnumEventCategory {
   fisioterapia,
   fonoaudiologia,
   medicacao,
+  procedimento,
   outros
 }

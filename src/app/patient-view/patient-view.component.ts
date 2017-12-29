@@ -4,7 +4,6 @@ import { Patient } from '../shared/models/patient';
 import { EnumUserType } from '../shared/enums/user-type.enum';
 import { RefreshService } from '../services/refresh.service';
 import { Subscription } from 'rxjs/Subscription';
-import { IdentificationPatientService } from '../services/identification-patient.service';
 import { Observable } from 'rxjs/Observable';
 
 declare const startApp: any;
@@ -23,6 +22,8 @@ export class PatientViewComponent implements OnInit, AfterViewInit, OnDestroy {
 
   patientId: string;
   patient: Patient;
+
+  // Options to overwrite the default settings on schedule
   schedulerConfig: Scheduler = {
     practitioner: {
       thumbnail: {
@@ -39,18 +40,15 @@ export class PatientViewComponent implements OnInit, AfterViewInit, OnDestroy {
     userType: EnumUserType.patient // Patient type
   };
 
+  // Loading
   isLoading: boolean;
 
   // Subscriptions
   refreshSubscription: Subscription;
   autoRefreshSubscription: Subscription;
 
-  // Practitioners linked to this patient
-  practitioners: any;
-
   constructor(private renderer: Renderer2,
-              private refreshService: RefreshService,
-              private idtPatSrevice: IdentificationPatientService) {
+              private refreshService: RefreshService) {
   }
 
   ngOnInit() {
@@ -67,6 +65,7 @@ export class PatientViewComponent implements OnInit, AfterViewInit, OnDestroy {
     this.unloadGeneralListeners();
   }
 
+  // Add the attribute on elements where the font size will suffer modification
   addFontResizerAttribute() {
     // Add on greeting component on header
     const greetingElement = document.querySelector('.greeting-message');
@@ -86,15 +85,17 @@ export class PatientViewComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
 
-    // Start auto refresh
-    this.startAutoRefresh();
+    // Listen auto refresh
+    this.startAutoRefreshListener();
   }
 
+  // Remove all the listeners
   unloadGeneralListeners() {
     this.refreshSubscription.unsubscribe();
     this.autoRefreshSubscription.unsubscribe();
   }
 
+  // Load all the information about the logged patient
   loadPatient() {
     const patientData: Patient = JSON.parse(sessionStorage.getItem('patient'))['dto'] || {
       id: '24281',
@@ -109,35 +110,27 @@ export class PatientViewComponent implements OnInit, AfterViewInit, OnDestroy {
     this.schedulerConfig.onlineMode = true;
   }
 
-  startAutoRefresh() {
+  // Auto refresh listener
+  startAutoRefreshListener() {
     this.autoRefreshSubscription = this.autoRefresher()
       .subscribe(() => {
         this.refreshContent();
       });
   }
 
+  // Restart the refresher
   restartAutoRefresh() {
     // Restart auto refresh
     this.autoRefreshSubscription.unsubscribe();
-    this.startAutoRefresh();
+    this.startAutoRefreshListener();
   }
 
+  // Start the refresh state applying a rotate animation to the icon
   refreshContent() {
     console.log(this.refreshElement);
     this.renderer.addClass(this.refreshElement.nativeElement, 'rotating-refresher');
 
     this.refreshService.emitRefreshState(true);
-  }
-
-  getCareProviders() {
-    this.idtPatSrevice.getCareProviders(this.patientId)
-      .subscribe(careProviders => {
-          console.log(careProviders);
-          this.practitioners = careProviders;
-        },
-        (error) => {
-          console.error('Error trying to get the doctors for this patient => ', error);
-        });
   }
 
   // Auto refresher each 30 minutes
@@ -151,10 +144,12 @@ export class PatientViewComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log(val);
   }
 
+  // Open the evaluation app only in IOS devices
   onEvaluationClick() {
     this.openIdentificationApp();
   }
 
+  // Open the app only in IOS devices
   openApp(appPath: string) {
     startApp.set(appPath).start(
       function(){},

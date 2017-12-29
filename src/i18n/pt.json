@@ -1,8 +1,8 @@
 {
-  "error": {
-    "generalMessage": "Erro durante a operação!",
-    "retryButton": "Tente Novamente",
-    "timeInput": "* Preencha os horários corretamente"
+  "ERROR": {
+    "GENERALMESSAGE": "Erro durante a operação!",
+    "RETRYBUTTON": "Tente Novamente",
+    "TIMEINPUT": "* Preencha os horários corretamente"
   },
   "LOGIN": {
     "TITLE": "Smart Hospitality",
@@ -14,7 +14,8 @@
   },
   "MENU": {
     "SMART": "Smart Hospitality",
-    "IDENTIFICATION": "Avaliação",
+    "EVALUATION": "Avaliação",
+    "IDENTIFICATION": "Equipe de Cuidados",
     "SCHEDULE": "Agenda do Paciente",
     "CARE_PLAN": "Plano de cuidados"
   },
@@ -22,92 +23,102 @@
     "HEALTHPRO": "PROF. SAÚDE",
     "PROFESSIONAL": "PROFISSIONAL DE SAÚDE"
   },
-  "patientView": {
-    "eventModal": {
-      "create": {
-        "header": "O que deseja adicionar em sua agenda?",
-        "submit": "Adicionar ao Calendário"
+  "PATIENTVIEW": {
+    "EVENTMODAL": {
+      "CREATE": {
+        "HEADER": "O que deseja adicionar em sua agenda?",
+        "SUBMIT": "Adicionar ao Calendário"
       },
-      "edit": {
-        "header": "O que deseja editar?",
-        "submit": "Atualizar Calendário"
+      "EDIT": {
+        "HEADER": "O que deseja editar?",
+        "SUBMIT": "Atualizar Calendário"
       },
-      "categories": {
-        "family": {
-          "logoDescription": "Visita da<br>família",
-          "title": "Nome do Familiar"
+      "CATEGORIES": {
+        "FAMILY": {
+          "LOGODESCRIPTION": "Visita da<br>família",
+          "TITLE": "Nome do Familiar"
         },
-        "doctor": {
-          "logoDescription": "Médico<br>Externo",
-          "title": "Nome do médico"
+        "DOCTOR": {
+          "LOGODESCRIPTION": "Médico<br>Externo",
+          "TITLE": "Nome do médico"
         },
-        "others": {
-          "logoDescription": "Outros",
-          "title": "Assunto"
+        "OTHERS": {
+          "LOGODESCRIPTION": "Outros",
+          "TITLE": "Assunto"
         }
       },
-      "date": "Data",
-      "time": "Horário"
+      "DATE": "Data",
+      "TIME": "Horário"
     },
-    "refreshTitle": "Atualizar Conteúdo"
+    "REFRESHTITLE": "Atualizar Conteúdo"
   },
-  "practitionerView": {
-    "messageField": {
-      "inputPlaceholder": "Digite aqui uma mensagem ao paciente",
-      "sendButton": "Enviar"
+  "PRACTITIONERVIEW": {
+    "MESSAGEFIELD": {
+      "INPUTPLACEHOLDER": "Digite aqui uma mensagem ao paciente",
+      "SENDBUTTON": "Enviar"
     },
-    "patientBar": {
-      "standardTimeLabel": "Horário Padrão"
+    "MODAL": {
+      "TITLE": "Tem certeza que deseja copiar os eventos do dia \"{{value}}\"?",
+      "EVENT": "evento",
+      "EVENTS": "eventos",
+      "BTNCANCEL": "cancelar",
+      "BTNCOPY": "copiar"
     },
-    "rulesCalendar": {
-      "todayLabel": "Hoje"
+    "PATIENTBAR": {
+      "STANDARDTIMELABEL": "Horário Padrão"
     },
-    "searchHeader": {
-      "searchPlaceholder": "Buscar Nome do paciente ou Número do Quarto",
-      "patientsDropdown": {
-        "all": "Todos os pacientes",
-        "sectorA": "Pacientes Ala A",
-        "sectorB": "Pacientes Ala B",
-        "sectorC": "Pacientes Ala C"
+    "RULESCALENDAR": {
+      "TODAYLABEL": "Hoje"
+    },
+    "SEARCHHEADER": {
+      "SEARCHPLACEHOLDER": "Buscar Nome do paciente ou Número do Quarto",
+      "PATIENTSDROPDOWN": {
+        "ALL": "Todos os pacientes",
+        "SECTORA": "Pacientes Ala A",
+        "SECTORB": "Pacientes Ala B",
+        "SECTORC": "Pacientes Ala C"
       }
     },
-    "label": {
-      "all": "Todos",
-      "createStandardEvent": "Criar Tipo de Evento",
-      "createStandardEventTitle": "Crie um novo tipo de evento para a agenda.",
-      "copyFromYesterday": "Copiar atividades do dia anterior",
-      "food": "Refeição",
-      "hospitalRoutine": "Rotina Hospitalar",
-      "name": "Nome",
-      "order": "Ordenar",
-      "room": "Quarto",
-      "sector": "Setor",
-      "standardButton": "Tipo de Evento",
-      "years": "anos"
+    "LABEL": {
+      "ALL": "Todos",
+      "CREATESTANDARDEVENT": "Criar Tipo de Evento",
+      "CREATESTANDARDEVENTTITLE": "Crie um novo tipo de evento para a agenda.",
+      "COPYFROMYESTERDAY": "Copiar eventos do dia anterior",
+      "FOOD": "Refeição",
+      "HOSPITALROUTINE": "Rotina Hospitalar",
+      "NAME": "Nome",
+      "ORDER": "Ordenar",
+      "ROOM": "Quarto",
+      "SECTOR": "Setor",
+      "STANDARDBUTTON": "Tipo de Evento",
+      "YEARS": "anos"
     }
   },
-  "scheduler": {
-    "newEventTitle1": "Olá, ",
-    "newEventTitle2": "! Veja abaixo as atividades de hoje.",
-    "newEventBtnLabel": "Adicionar Evento",
-    "addEditForm": {
-      "allDay": "O dia todo",
-      "appointmentType": "Tipo de atividade",
-      "cancelAppointment": "Cancelar",
-      "date": "Data",
-      "description": "Descrição",
-      "newAppointment": "Criar atividade",
-      "repeatEveryDay": "Repetir todo dia",
-      "standardAppointment": "Atividade padrão",
-      "time": "Horário",
-      "timeStandard": "Horário Padrão",
-      "timeUntil": "até",
-      "title": "Título",
-      "videoLink": "Link para o vídeo de descrição (copie e cole abaixo)"
+  "SCHEDULER": {
+    "NEWEVENTTITLE1": "Olá, ",
+    "NEWEVENTTITLE2": "! Veja abaixo os eventos para hoje.",
+    "NEWEVENTBTNLABEL": "Adicionar Evento",
+    "ADDEDITFORM": {
+      "ALLDAY": "O dia todo",
+      "APPOINTMENTTYPE": "Tipo de evento",
+      "CANCELAPPOINTMENT": "Cancelar",
+      "DATE": "Data",
+      "DESCRIPTION": "Descrição",
+      "NEWAPPOINTMENT": "Criar evento",
+      "REPEATEVERYDAY": "Repetir todo dia",
+      "STANDARDAPPOINTMENT": "Evento padrão",
+      "TIME": "Horário",
+      "TIMESTANDARD": "Horário Padrão",
+      "TIMEUNTIL": "até",
+      "TITLE": "Título",
+      "VIDEOLINK": "Link para o vídeo de descrição (copie e cole abaixo)"
     }
   },
   "IDENTIFICATION": {
     "HEADER": "Seus profissionais de saúde",
-    "EMPTY_PRACTITIONERS": "Nenhum profissional encontrado"
+    "EMPTY_PRACTITIONERS": "Nenhum médico associado para esta internação",
+    "EMPTY_NURSE": "Nenhum profissional de enfermagem associado",
+    "EMPTY_ALL": "Nenhum profissional associado",
+    "EVALUATION": "Clique aqui para avaliar os enfermeiros que cuidaram de você"
   }
 }

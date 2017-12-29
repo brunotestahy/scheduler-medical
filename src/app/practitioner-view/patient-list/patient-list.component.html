@@ -1,26 +1,26 @@
-<smart-search-header placeHolder="{{'practitionerView.searchHeader.searchPlaceholder' | translate}}"
+<smart-search-header placeHolder="{{'PRACTITIONERVIEW.SEARCHHEADER.SEARCHPLACEHOLDER' | translate}}"
                      #searchHeader
                      (updateSuggestions)="updateSuggestions()">
   <div class="filter-selection">
     <div class="form-group">
-      <label>{{'practitionerView.label.order' | translate}}</label>
+      <label>{{'PRACTITIONERVIEW.LABEL.ORDER' | translate}}</label>
 
       <smart-select width="100px"
                     [(value)]="orderBySelectValue"
                     (change)="orderBySelectValue = $event; saveFilterOptions()">
-        <smart-option [value]="'fullName'" [display]="'practitionerView.label.name' | translate"></smart-option>
-        <smart-option [value]="'room'" [display]="'practitionerView.label.room' | translate"></smart-option>
+        <smart-option [value]="'fullName'" [display]="'PRACTITIONERVIEW.LABEL.NAME' | translate"></smart-option>
+        <smart-option [value]="'room'" [display]="'PRACTITIONERVIEW.LABEL.ROOM' | translate"></smart-option>
       </smart-select>
     </div>
 
     <div class="form-group">
-      <label>{{'practitionerView.label.sector' | translate}}</label>
+      <label>{{'PRACTITIONERVIEW.LABEL.SECTOR' | translate}}</label>
 
       <smart-select width="170px"
                     [(value)]="filterBySelectValue"
                     (change)="filterBySelectValue = $event; saveFilterOptions()"
                     *ngIf="roomSectors != null">
-        <smart-option [display]="'practitionerView.label.all' | translate"></smart-option>
+        <smart-option [display]="'PRACTITIONERVIEW.LABEL.ALL' | translate"></smart-option>
         <smart-option *ngFor="let sector of roomSectors" [value]="sector['code']"
                       [display]="sector['display']"></smart-option>
       </smart-select>
@@ -29,7 +29,7 @@
     <div class="add-event-section" [hidden]="!canCreateAppointmentType">
       <button class="btn-new-event" (click)="openDialog()">
         <img src="./assets/img/ic_add_box_practitioner.svg" alt="add_icon">
-        {{'practitionerView.label.standardButton' | translate}}
+        {{'PRACTITIONERVIEW.LABEL.STANDARDBUTTON' | translate}}
       </button>
     </div>
   </div>
@@ -48,15 +48,15 @@
       <div class="full-name">{{patient.fullName.toLowerCase()}}</div>
       <div class="birthday" *ngIf="patient.birthDate.dateTime">{{(patient.birthDate.dateTime | date: birthDateFormat) +
         ' - '
-        + patient.birthDate['age'] + ' ' + ('practitionerView.label.years' | translate)}}
+        + patient.birthDate['age'] + ' ' + ('PRACTITIONERVIEW.LABEL.YEARS' | translate)}}
       </div>
     </div>
   </smart-card>
   <div class="fix-cards-space" *ngFor="let fix of [1, 2, 3, 4, 5]"></div>
 </div>
 <div class="async-error" *ngIf="!isLoading && isAsyncError">
-  <span class="error-message">{{'error.generalMessage' | translate}}</span>
-  <button class="btn" (click)="retryAsyncOpertion()">{{'error.retryButton' | translate}}</button>
+  <span class="error-message">{{'ERROR.GENERALMESSAGE' | translate}}</span>
+  <button class="btn" (click)="retryAsyncOpertion()">{{'ERROR.RETRYBUTTON' | translate}}</button>
 </div>
 
 <!--Add/Edit an Event Modal-->
@@ -66,7 +66,7 @@
   <div class="dialog-content text-left">
 
     <div class="event-add-edit">
-      <h1 class="title">{{'practitionerView.label.createStandardEventTitle' | translate}}</h1>
+      <h1 class="title">{{'PRACTITIONERVIEW.LABEL.CREATESTANDARDEVENTTITLE' | translate}}</h1>
 
       <div class="main-carousel">
         <div class="category carousel-cell" *ngFor="let category of appointmentsCategory; let i = index"
@@ -82,7 +82,7 @@
 
           <div class="standard-title">
             <div class="form-group">
-              <label for="standard-title">{{'scheduler.addEditForm.title' | translate}}</label>
+              <label for="standard-title">{{'SCHEDULER.ADDEDITFORM.TITLE' | translate}}</label>
               <div class="field">
                 <input type="text"
                        class="form-control input-lg"
@@ -98,7 +98,7 @@
           </div>
 
           <div class="form-group event-description">
-            <label for="event-description">{{'scheduler.addEditForm.description' | translate}}</label>
+            <label for="event-description">{{'SCHEDULER.ADDEDITFORM.DESCRIPTION' | translate}}</label>
             <div class="field">
               <textarea class="form-control"
                         id="event-description"
@@ -111,7 +111,7 @@
           </div>
 
           <div class="form-group event-videolink">
-            <label for="event-videolink">{{'scheduler.addEditForm.videoLink' | translate}}</label>
+            <label for="event-videolink">{{'SCHEDULER.ADDEDITFORM.VIDEOLINK' | translate}}</label>
             <div class="field">
               <input type="text"
                      class="form-control input-lg"
@@ -125,7 +125,7 @@
           <button type="submit"
                   class="btn btn-lg"
                   [disabled]="modalSchedulerForm.invalid">
-            {{'practitionerView.label.createStandardEvent' | translate}}
+            {{'PRACTITIONERVIEW.LABEL.CREATESTANDARDEVENT' | translate}}
           </button>
         </form>
       </div>

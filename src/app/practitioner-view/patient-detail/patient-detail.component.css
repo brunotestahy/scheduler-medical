@@ -18,20 +18,12 @@ p-checkbox {
 .patient-detail-bar {
   min-height: 100px;
   background-color: #60534B;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   align-items: center;
   padding: 1rem 3rem;
 }
 
 /deep/ .loading-container {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   justify-content: center;
   margin-top: 5%;
@@ -83,10 +75,6 @@ p-checkbox {
 
 .standard-time {
   width: 10rem;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   justify-content: center;
   -webkit-justify-content: center;
@@ -101,10 +89,6 @@ p-checkbox {
 
 .messenger-container {
   min-height: 100px;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,10 +110,6 @@ p-checkbox {
 }
 
 .messenger-container .btn {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   align-items: center;
   background: transparent;
@@ -165,10 +145,6 @@ p-checkbox {
 
 .btn-new-event {
   font-family: 'skolasansbold';
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   align-items: center;
   justify-content: space-around;

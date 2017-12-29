@@ -1,0 +1,239 @@
+<div class="new-event" #newEvent *ngIf="customScheduleObject.newEventHeader.active">
+  <div class="thumbnail"
+       *ngIf="customScheduleObject.practitioner.thumbnail"
+       [ngStyle]="{
+            'border': customScheduleObject.practitioner.thumbnail.border,
+            'width': customScheduleObject.practitioner.thumbnail.width,
+            'height': customScheduleObject.practitioner.thumbnail.height
+        }">
+    <img [attr.src]="customScheduleObject.practitioner.thumbnail.photo" alt="Thumbnail"/>
+  </div>
+  <div class="pro-view" *ngIf="customScheduleObject.i18nLanguage.active">
+    {{'SCHEDULER.NEWEVENTTITLE1' |
+    translate}}{{customScheduleObject.newEventHeader.patientName}}{{'SCHEDULER.NEWEVENTTITLE2' | translate}}
+  </div>
+  <div class="pro-view" *ngIf="!customScheduleObject.i18nLanguage.active">
+    {{customScheduleObject.newEventHeader.title1}}{{customScheduleObject.newEventHeader.patientName}}{{customScheduleObject.newEventHeader.title2}}
+  </div>
+  <button class="btn-new-event" (click)="openDialog('add-edit', 'add')">
+    <img src="./assets/img/ic_add_box_patient.svg" alt="add_icon">
+    {{customScheduleObject.i18nLanguage.active ? ('SCHEDULER.NEWEVENTBTNLABEL' | translate) :
+    customScheduleObject.newEventHeader.buttonLabel}}
+  </button>
+</div>
+<p-schedule [header]="customScheduleObject.header"
+            [height]="880"
+            [allDayText]="customScheduleObject.allDayText"
+            [events]="customScheduleObject.initialEvents"
+            [eventLimit]="3"
+            [editable]="customScheduleObject.editable"
+            [aspectRatio]="customScheduleObject.aspectRatio"
+            [slotEventOverlap]="customScheduleObject.slotEventOverlap"
+            [defaultView]="customScheduleObject.defaultView"
+            [scrollTime]="customScheduleObject.scrollTime"
+            [timeFormat]="customScheduleObject.timeFormat"
+            [options]="customScheduleObject.options"
+            [eventRender]="renderEvent"
+            #schedule
+            (onViewRender)="loadToAgendaView($event)"
+            (onEventDrop)="customScheduleObject.onlineMode ? updateEventsOnServer($event) : buildScheduler()"
+            (onEventResize)="customScheduleObject.onlineMode ? updateEventsOnServer($event) : buildScheduler()"
+            (onEventClick)="handleEventClick($event)"
+            (onDayClick)="onTimeClick($event)">
+</p-schedule>
+
+<div class="loading" *ngIf="loadingActive" @fadeAnimation>
+  <smart-loading></smart-loading>
+</div>
+
+<smart-dialog [opened]="modalConfig.active" (overlayClick)="closeDialog()">
+  <button class="close-button" (click)="closeDialog()"></button>
+
+  <div class="dialog-content text-left" [ngSwitch]="modalConfig.type">
+
+    <!--Add/Edit an Event Modal-->
+    <div class="event-add-edit" *ngSwitchCase="'add-edit'">
+      <h1 class="title">{{modalConfig.action === 'add' ? ('PATIENTVIEW.EVENTMODAL.CREATE.HEADER' | translate) :
+        ('PATIENTVIEW.EVENTMODAL.EDIT.HEADER' | translate)}}</h1>
+
+      <div class="main-carousel" *ngIf="customScheduleObject.userType === 2">
+        <div class="category carousel-cell"
+             *ngFor="let category of customScheduleObject.appointmentCategory; let i = index"
+             [ngClass]="modalConfig.categoryEventStyle.selectedCategory === category.code ? modalConfig.categoryEventStyle.activeCategoryClass + category.code : ''"
+             (click)="goToSlide(i, category); onAppointmentCategorySelected(category.code)">
+          <div [ngClass]="'logo-' + category.code">{{category.code === 'outros' ? '&#63;' : ''}}</div>
+          <div class="logo-description">{{category.display}}</div>
+        </div>
+      </div>
+
+      <div class="form-event" [ngSwitch]="modalConfig.categoryEventStyle.selectedCategory">
+        <form #modalSchedulerForm="ngForm" (ngSubmit)="submitForm()">
+
+          <div class="form-group" *ngIf="customScheduleObject.userType === 2">
+            <label>{{'SCHEDULER.ADDEDITFORM.APPOINTMENTTYPE' | translate}}</label>
+
+            <div class="event-type-selection">
+              <smart-select width="250px"
+                            [(value)]="inputModels.type"
+                            (change)="onSelectTypeChange($event)"
+                            *ngIf="customScheduleObject.appointmentTypesFiltered.length > 0">
+                <smart-option
+                  *ngFor="let type of customScheduleObject.appointmentTypesFiltered"
+                  [value]="type?.code"
+                  [display]="type?.display">
+                </smart-option>
+              </smart-select>
+            </div>
+          </div>
+
+          <div class="standard-title">
+            <div class="form-group">
+              <label for="standard-title">{{'SCHEDULER.ADDEDITFORM.TITLE' | translate}}</label>
+              <div class="field">
+                <input type="text"
+                       class="form-control input-lg"
+                       id="standard-title"
+                       name="standard-title"
+                       [(ngModel)]="inputModels.title"
+                       required
+                       #standardTitleCtrl
+                       [ngClass]="{'invalid': standardTitleCtrl.invalid && standardTitleCtrl.touched}">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group event-description">
+            <label for="event-description">{{'SCHEDULER.ADDEDITFORM.DESCRIPTION' | translate}}</label>
+            <div class="field">
+              <textarea class="form-control"
+                        id="event-description"
+                        name="event-description"
+                        rows="3"
+                        [(ngModel)]="inputModels.description"
+                        #descriptionCtrl="ngModel">
+              </textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p-checkbox [(ngModel)]="inputModels.repeatEveryDay"
+                        name="repeat-every-day-checkbox"
+                        binary="true"
+                        label="{{'SCHEDULER.ADDEDITFORM.REPEATEVERYDAY' | translate}}">
+            </p-checkbox>
+          </div>
+
+          <div class="category-time">
+            <div class="form-group date" *ngIf="!inputModels.standard">
+              <label>{{'SCHEDULER.ADDEDITFORM.DATE' | translate}}</label>
+              <div class="field">
+                <p-calendar [(ngModel)]="inputModels.date"
+                            name="event-date"
+                            [required]="true"
+                            [locale]="calendarLanguage"
+                            [dateFormat]="calendarDateFormat">
+                </p-calendar>
+              </div>
+            </div>
+
+            <div class="form-group all-day-check">
+              <p-checkbox [(ngModel)]="inputModels.allDay"
+                          name="allday-checkbox"
+                          binary="true"
+                          label="{{'SCHEDULER.ADDEDITFORM.ALLDAY' | translate}}">
+              </p-checkbox>
+            </div>
+
+            <div class="form-group time-start" *ngIf="!inputModels.allDay">
+              <label *ngIf="!inputModels.standard">{{'SCHEDULER.ADDEDITFORM.TIME' | translate}}</label>
+              <label *ngIf="inputModels.standard">{{'SCHEDULER.ADDEDITFORM.TIMESTANDARD' | translate}}</label>
+              <div class="field" #startTimeElement>
+                <p-calendar [(ngModel)]="inputModels.time.start"
+                            [timeOnly]="true"
+                            name="event-time-start"
+                            (ngModelChange)="timeInputValidator()"
+                            [stepMinute]="5"
+                            [required]="true">
+                </p-calendar>
+              </div>
+            </div>
+
+            <div class="form-group time-until-label" *ngIf="!inputModels.allDay">
+              <label>{{'SCHEDULER.ADDEDITFORM.TIMEUNTIL' | translate}}</label>
+            </div>
+
+            <div class="form-group time-end" *ngIf="!inputModels.allDay">
+              <div class="field" #endTimeElement>
+                <p-calendar [(ngModel)]="inputModels.time.end"
+                            [timeOnly]="true"
+                            name="event-time-end"
+                            (ngModelChange)="timeInputValidator()"
+                            [stepMinute]="5"
+                            [required]="true">
+                </p-calendar>
+              </div>
+            </div>
+          </div>
+
+          <p class="time-error"
+             *ngIf="timeError">{{'error.timeInput' | translate}}</p>
+
+          <button type="submit"
+                  class="btn btn-lg"
+                  [disabled]="modalSchedulerForm.invalid || timeError || (!inputModels.type && customScheduleObject.userType === 2)">
+            {{modalConfig.action === 'add' ? ('PATIENTVIEW.EVENTMODAL.CREATE.SUBMIT' | translate) :
+            ('PATIENTVIEW.EVENTMODAL.EDIT.SUBMIT' | translate)}}
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!--Detailed Description Modal-->
+    <div class="event-description-detail" *ngSwitchCase="'description-detail'">
+      <h2 class="event-title">{{modalConfig.descriptionDetail.title}}</h2>
+      <p class="event-description">{{modalConfig.descriptionDetail.description}}</p>
+      <div class="embed-responsive embed-responsive-16by9" *ngIf="modalConfig.descriptionDetail.videoLink">
+        <iframe class="embed-responsive-item" [src]="modalConfig.descriptionDetail.videoLink" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!--Copy from Yesterday Modal-->
+    <div class="event-description-detail" *ngSwitchCase="'copy-events'">
+      <h2 class="event-title">{{'PRACTITIONERVIEW.MODAL.TITLE' | translate: ({value: (yesterdayDate | date:
+        'dd/MM/yyyy')})}}</h2>
+      <div class="checkbox-section">
+        <div class="form-group">
+          <p-checkbox [(ngModel)]="multiSelect.allState"
+                      binary="true"
+                      label="Todos"
+                      (onChange)="onAllEventsChecked()">
+          </p-checkbox>
+        </div>
+        <div class="form-group" *ngFor="let category of customScheduleObject.appointmentCategory">
+          <p-checkbox [(ngModel)]="multiSelect.categories[category.code]"
+                      binary="true"
+                      label="{{category.display}}"
+                      (onChange)="onSomeCategoryChecked()">
+          </p-checkbox>
+        </div>
+      </div>
+
+      <div class="submit-section">
+        <button class="btn-cancel" (click)="closeDialog()">{{'Cancelar'}}</button>
+        <button class="btn-copy" (click)="closeDialog(); copyEventsFromYesterday()" [disabled]="!atLeastOneCheckBoxValid()">{{'Copiar'}}</button>
+      </div>
+    </div>
+  </div>
+
+</smart-dialog>
+
+<div class="error-warning" *ngIf="requestError" @fadeAnimation>
+  <app-warning
+    upperSentence="Erro na requisição."
+    lowerSentence="Agenda não pôde ser carregada.">
+  </app-warning>
+</div>
+
+<!--Tooltip message-->
+
+<p-growl [life]="3000"></p-growl>

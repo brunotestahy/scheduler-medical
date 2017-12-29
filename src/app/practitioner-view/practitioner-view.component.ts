@@ -14,10 +14,13 @@ export class PractitionerViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Catching the practitioner's name to display on the view
     this.practitionerName = JSON.parse(sessionStorage.getItem('employee')) &&
     JSON.parse(sessionStorage.getItem('employee'))['dto'] ?
       JSON.parse(sessionStorage.getItem('employee'))['dto']['fullName'] : '';
   }
+
+  // Links to open the specific pages on menu
 
   getCarePlanPath() {
     return environment.carePlanPage;

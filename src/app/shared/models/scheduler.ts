@@ -44,6 +44,7 @@ export interface Scheduler {
     fisioterapia?: EventCategoryStyle;
     fonoaudiologia?: EventCategoryStyle;
     medicacao?: EventCategoryStyle;
+    procedimento?: EventCategoryStyle;
     outros?: EventCategoryStyle;
   };
   color?: string;

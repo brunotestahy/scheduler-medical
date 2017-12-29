@@ -4,8 +4,6 @@
 }
 
 .cal-month-view .cal-cell {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -29,10 +27,6 @@
   border-radius: 50%;
   height: 3.7rem;
   width: 3.7rem;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,10 +111,6 @@
   height: 4.5rem;
   color: #534c48;
   justify-content: center;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   padding: 0 1.85rem;
   opacity: 0;

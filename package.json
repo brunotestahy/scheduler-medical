@@ -1,6 +1,6 @@
 {
   "name": "schedule",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,7 @@
     "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-ios-cstar-hmg": "ng build --prod --base-href . --env=cstar-hmg",
+    "build-web-dev": "ng build --prod --base-href /schedule --env=dev",
     "build-web-cstar-hmg": "ng build --prod --base-href /schedule/ --env=cstar-hmg && ng-javaee-config",
     "build-web-cstar-prd": "ng build --prod --base-href /schedule/ --env=cstar-prd && ng-javaee-config"
   },
@@ -34,10 +34,9 @@
     "angular-calendar": "^0.21.2",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
-    "dragscroll": "0.0.8",
     "flickity": "^2.0.10",
     "font-awesome": "^4.7.0",
-    "front-end-common": "file:front-end-common-1.0.3.tgz",
+    "front-end-common": "file:front-end-common-1.0.7.tgz",
     "fullcalendar": "^3.6.1",
     "hammerjs": "^2.0.8",
     "intl": "^1.2.5",

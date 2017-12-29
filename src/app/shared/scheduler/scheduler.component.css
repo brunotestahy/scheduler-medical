@@ -1,0 +1,597 @@
+/*Checkbox layout*/
+@import "../../../component-styles/checkbox.css";
+/*Carousel layout*/
+@import "../../../component-styles/carousel.css";
+
+/*Enable this for fade animation works*/
+:host {
+  display: block;
+  position: relative;
+}
+
+/*Scheduler Header Style*/
+.new-event {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 8rem;
+  background-color: #ffffff;
+  border-radius: .6rem .6rem 0 0;
+  border: none;
+  padding: 0 3%;
+}
+
+.pro-view {
+  font-family: 'skolasansmedium';
+  color: #4D4337;
+  font-size: 2rem;
+  margin: 0 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .pro-view {
+    font-size: 1.3rem;
+  }
+}
+
+.btn-new-event {
+  font-family: 'skolasansbold';
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  line-height: 1.5rem;
+  font-size: 1.5rem;
+  color: #E09E95;
+  text-transform: uppercase;
+  min-width: 20rem;
+  background-color: transparent;
+  border: none;
+}
+
+.btn-new-event img {
+  height: 4rem;
+  width: 3rem;
+}
+
+.thumbnail {
+  margin: 1rem 0;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.thumbnail img {
+  border-radius: 50%;
+}
+
+.dialog-content {
+  padding: 0 10px;
+}
+
+/deep/ .overlay .content {
+  min-width: 70%;
+  max-width: 85%;
+}
+
+/*Add/Edit Modal Style*/
+
+.event-add-edit .title {
+  font-family: 'skolasansbold';
+  font-size: 3rem;
+  text-align: center;
+  margin: 0 0 4rem 0;
+}
+
+.event-add-edit .logo-refeicao {
+  background: url("../../../assets/img/refeicao.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-higiene {
+  background: url("../../../assets/img/higiene.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-exames {
+  background: url("../../../assets/img/exames.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 39%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-curativo {
+  background: url("../../../assets/img/curativo.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-fisioterapia {
+  background: url("../../../assets/img/fisio.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-fonoaudiologia {
+  background: url("../../../assets/img/fono.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-medicacao {
+  background: url("../../../assets/img/HoraMedicacao.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-procedimento {
+  background: url("../../../assets/img/procedimentos.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
+.event-add-edit .logo-outros {
+  height: 6rem;
+  width: 6rem;
+  border: 5px solid #E7CDC7;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "skolasansbold";
+  font-size: 4rem;
+  color: #9C766A;
+}
+
+.event-add-edit .logo-description {
+  font-family: 'skolasansmedium';
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: #A7A5A3;
+}
+
+.category-active-refeicao .logo-refeicao + .logo-description {
+  color: #a29a80;
+}
+
+.category-active-higiene .logo-higiene + .logo-description {
+  color: #888ca1;
+}
+
+.category-active-exames .logo-exames + .logo-description {
+  color: #7e756e;
+}
+
+.category-active-curativo .logo-curativo + .logo-description {
+  color: #d1a3a3;
+}
+
+.category-active-fisioterapia .logo-fisioterapia + .logo-description {
+  color: #6ca1b7;
+}
+
+.category-active-fonoaudiologia .logo-fonoaudiologia + .logo-description {
+  color: #c18caa;
+}
+
+.category-active-medicacao .logo-medicacao + .logo-description {
+  color: #8ea4a0;
+}
+
+.category-active-procedimento .logo-procedimento + .logo-description {
+  color: #0e858d;
+}
+
+.category-active-outros .logo-outros + .logo-description {
+  color: #8d8584;
+}
+
+.close-button {
+  background: url('../../../assets/img/ic_close_24px.svg') no-repeat;
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+}
+
+/deep/ .suggestion-box ul {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.category {
+  height: 19rem;
+  width: 19rem;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: 2px solid #E2E1DF;
+  position: relative;
+  border-radius: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 1rem;
+}
+
+.category:first-of-type {
+  margin-left: 0;
+}
+
+.category:last-of-type {
+  margin-right: 0;
+}
+
+.category:hover {
+  cursor: pointer;
+}
+
+.category-active-refeicao,
+.category-active-higiene,
+.category-active-exames,
+.category-active-curativo,
+.category-active-fisioterapia,
+.category-active-fonoaudiologia,
+.category-active-medicacao,
+.category-active-procedimento,
+.category-active-outros {
+  border: none;
+}
+
+.category-active-refeicao {
+  background-color: #f3e9c6;
+}
+
+.category-active-higiene {
+  background-color: #e0e3f2;
+}
+
+.category-active-exames {
+  background-color: #efe9e4;
+}
+
+.category-active-curativo {
+  background-color: #fae1e1;
+}
+
+.category-active-fisioterapia {
+  background-color: #d3e5ec;
+}
+
+.category-active-fonoaudiologia {
+  background-color: #f2e3eb;
+}
+
+.category-active-medicacao {
+  background-color: #e0f2ee;
+}
+
+.category-active-procedimento {
+  background-color: #c8e0e1;
+}
+
+.category-active-outros {
+  background-color: #dddddddb;
+}
+
+.category-active-refeicao::after,
+.category-active-higiene::after,
+.category-active-exames::after,
+.category-active-curativo::after,
+.category-active-fisioterapia::after,
+.category-active-fonoaudiologia::after,
+.category-active-medicacao::after,
+.category-active-procedimento::after,
+.category-active-outros::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -29px;
+  border: 15px solid;
+}
+
+.category-active-refeicao::after {
+  border-color: #f3e9c6 transparent transparent transparent;
+}
+
+.category-active-higiene::after {
+  border-color: #e0e3f2 transparent transparent transparent;
+}
+
+.category-active-exames::after {
+  border-color: #efe9e4 transparent transparent transparent;
+}
+
+.category-active-curativo::after {
+  border-color: #fae1e1 transparent transparent transparent;
+}
+
+.category-active-fisioterapia::after {
+  border-color: #d3e5ec transparent transparent transparent;
+}
+
+.category-active-fonoaudiologia::after {
+  border-color: #f2e3eb transparent transparent transparent;
+}
+
+.category-active-medicacao::after {
+  border-color: #e0f2ee transparent transparent transparent;
+}
+
+.category-active-procedimento::after {
+  border-color: #c8e0e1 transparent transparent transparent;
+}
+
+.category-active-outros::after {
+  border-color: #dddddddb transparent transparent transparent;
+}
+
+.event-type-selection {
+  display: flex;
+  height: 40px;
+}
+
+.event-type-selection .field {
+  width: 100%;
+}
+
+.field {
+  border: .14rem dashed rgba(153, 153, 153, .9);
+  border-radius: .7rem;
+  padding: 1px;
+}
+
+.field input {
+  font-family: 'skolasansmedium';
+  font-size: 1.6rem;
+  border-radius: .5rem;
+}
+
+.field.invalid, .field.ng-invalid {
+  border: 1px dashed #ff0000;
+}
+
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
+  border: 1px solid #ff9999;
+}
+
+p-calendar.ng-invalid /deep/ .ui-inputtext {
+  border-bottom-color: #d6d6d6 !important;
+}
+
+label {
+  font-family: 'skolasansbold';
+  color: #A99A94;
+  font-size: 1.5rem;
+}
+
+.repeat-every-day label, .event-standard label {
+  display: inline-flex;
+  padding-left: 0;
+}
+
+.repeat-every-day label .field, .event-standard label .field {
+  margin-left: 1.4rem;
+}
+
+.category-time {
+  display: flex;
+}
+
+.all-day-check {
+  display: flex;
+  margin-left: 1rem;
+  align-items: flex-end;
+  padding-bottom: 1rem;
+  min-width: 15rem;
+}
+
+.all-day-check p-checkbox {
+  justify-content: flex-start;
+  width: 14rem;
+}
+
+.time-start {
+  margin-left: 2rem;
+}
+
+.time-until-label {
+  padding: 2rem 2rem .8rem 2rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.time-end {
+  display: flex;
+  align-items: flex-end;
+}
+
+.btn {
+  font-family: 'skolasansbold';
+  background-color: #DF9F93;
+  color: #ffffff;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.time-error {
+  font-family: 'skolasansmedium';
+  color: #ff0000;
+}
+
+/*Description Detail Modal Style*/
+
+.event-description-detail {
+  width: 100%;
+}
+
+.event-description-detail .event-title {
+  font-family: 'skolasansbold';
+  word-wrap: break-word;
+  font-size: 3rem;
+  margin: 0 0 4rem 0;
+}
+
+.event-description-detail .event-description {
+  font-family: 'skolasansmedium';
+  margin: 0 0 3rem 0;
+  color: #9C9591;
+}
+
+/*Copy Events from yesterday Modal Style*/
+
+.checkbox-section {
+  display: flex;
+  flex-direction: column;
+  height: 23rem;
+  flex-wrap: wrap;
+}
+
+.checkbox-section p-checkbox {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.checkbox-section p-checkbox /deep/ .ui-chkbox {
+  margin-right: 1em;
+}
+
+.submit-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rem;
+}
+
+.submit-section .btn-copy, .btn-cancel {
+  font-family: 'skolasansblack';
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 26rem;
+  border-radius: 2px;
+  padding: 7px 20px;
+  text-align: center;
+}
+
+.btn-cancel {
+  background: #fff;
+  color: #ce9e92;
+  border: 1px solid #ce9e92;
+}
+
+.btn-copy {
+  background: #ce9e92;
+  color: #fff;
+  border: none;
+}
+
+.btn-copy:disabled {
+  background-color: #c7c3c3;
+}
+
+/*Loading and Error Style*/
+
+.loading,
+.error-warning {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  z-index: 10;
+  left: 0;
+  bottom: 0;
+  opacity: 0.9;
+  border-radius: .5rem;
+}
+
+.error-warning {
+  opacity: 1;
+}
+
+/deep/ .loading-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 15%;
+}
+
+/deep/ .main-loading {
+  background-color: #949B9F !important;
+}
+
+.carousel-cell {
+  margin-bottom: 35px;
+}
+
+/*Calendar Module custom layout*/
+
+/deep/ .ui-inputtext {
+  width: 12rem;
+  line-height: 46px;
+  height: 46px;
+  text-align: center;
+  font-family: 'skolasansmedium';
+  color: #555;
+  font-size: 1.6rem;
+  border-radius: .5rem;
+}
+
+.date /deep/ .ui-inputtext {
+  width: 20rem;
+}
+
+.time-start /deep/ .ui-datepicker,
+.time-end /deep/ .ui-datepicker {
+  width: 100% !important;
+}
+
+/deep/ .ui-datepicker.ui-widget {
+  top: -275px !important;
+}
+
+.time-start /deep/ .ui-datepicker.ui-widget,
+.time-end /deep/ .ui-datepicker.ui-widget {
+  top: -131px !important;
+}
+
+.time-start /deep/ .ui-timepicker > div,
+.time-end /deep/ .ui-timepicker > div {
+  margin-left: 0 !important;
+}
+
+/deep/ .ui-hour-picker,
+/deep/ .ui-minute-picker,
+/deep/ .ui-separator {
+  font-family: 'skolasansmedium';
+  color: #555;
+  font-size: 1.4rem;
+}
+
+/deep/ .ui-timepicker {
+  padding: 0 !important;
+}
+
+/deep/ .ui-timepicker > div a {
+  font-size: 2.3rem;
+  margin: 1rem 0;
+}

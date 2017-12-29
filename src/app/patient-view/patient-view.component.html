@@ -14,11 +14,13 @@
                           height="400px"
                           (open)="log('load practitioners');"
                           (evaluationClick)="onEvaluationClick()"
-                          evaluationMessage="Clique aqui para avaliar os enfermeiros que cuidaram de você"
-                          emptyPractitionersMessage="{{'IDENTIFICATION.EMPTY_PRACTITIONERS' | translate}}">
+                          emptyPractitionersMessage="{{'IDENTIFICATION.EMPTY_PRACTITIONERS' | translate}}"
+                          evaluationMessage="{{'IDENTIFICATION.EVALUATION' | translate}}"
+                          emptyNurseMessage="{{'IDENTIFICATION.EMPTY_NURSE' | translate}}"
+                          emptyAllMessage="{{'IDENTIFICATION.EMPTY_ALL' | translate}}">
     </smart-identification>
     <app-ajust-font [ngStyle]="{'margin-top': '7px'}"></app-ajust-font>
-    <div class="refresher" title="{{'patientView.refreshTitle' | translate}}">
+    <div class="refresher" title="{{'PATIENTVIEW.REFRESHTITLE' | translate}}">
       <img src="./assets/img/refresh.svg"
            alt="Refresh_Icon"
            #refresher
@@ -28,7 +30,7 @@
       <smart-menu-item (click)="$event.preventDefault(); openSmartApp()">{{'MENU.SMART' | translate}}</smart-menu-item>
       <smart-menu-item (click)="$event.preventDefault(); openCarePlanApp()">{{'MENU.CARE_PLAN' | translate}}</smart-menu-item>
       <smart-menu-item [active]="true">{{'MENU.SCHEDULE' | translate}}</smart-menu-item>
-      <smart-menu-item (click)="$event.preventDefault(); openIdentificationApp()">{{'MENU.IDENTIFICATION' | translate}}</smart-menu-item>
+      <smart-menu-item (click)="$event.preventDefault(); openIdentificationApp()">{{'MENU.EVALUATION' | translate}}</smart-menu-item>
     </smart-menu>
   </div>
 </smart-header>

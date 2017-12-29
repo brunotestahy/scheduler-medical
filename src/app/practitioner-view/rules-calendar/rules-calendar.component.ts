@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { RulesCalendarService } from '../../services/rules-calendar.service';
 import { CalendarDateFormatter } from 'angular-calendar';
-import { CustomDateFormatter } from './custom-date-formatter.provider';
+import { CustomDateFormatter } from '../../services/custom-date-formatter.service';
 
 import { Router } from '@angular/router';
 import { ScheduleService } from '../../services/schedule.service';

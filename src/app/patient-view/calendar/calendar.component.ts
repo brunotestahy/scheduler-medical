@@ -49,6 +49,7 @@ export class CalendarComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  // Customize the weekday labels layout
   fixWeekDaysName() {
     const weekNamesCells = document.querySelectorAll('.cal-header .cal-cell');
     for (let i = 0; i < weekNamesCells.length; i++) {
@@ -70,6 +71,7 @@ export class CalendarComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  // Apply the layout for an active/clicked date
   turnDateActive() {
     this.scheduleService.emitDateChange(this.viewDate);
 
@@ -82,18 +84,23 @@ export class CalendarComponent implements OnInit, OnDestroy, AfterViewInit {
     this.renderer.addClass(dayCells[activeDate - 1], 'cal-day-active');
   }
 
+  // Set up the listener
   startClock() {
     this.clockSubscription = this.clockFeature().subscribe((time: Date) => {
       this.clockTime = time;
     });
   }
 
+  // Clock time with observable
   clockFeature(): Observable<Date> {
+    const interval = 1000; // seconds * 1000
+
     return Observable
-      .interval(1000)
+      .interval(interval)
       .map(tick => new Date());
   }
 
+  // Event caught during a day click
   onDayClicked(event) {
     this.viewDate = event.day.date;
     this.scheduleService.emitDateChange(this.viewDate);

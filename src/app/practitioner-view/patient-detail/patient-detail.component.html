@@ -5,23 +5,23 @@
     <div class="full-name" title="{{patient?.fullName | titlecase}}">{{patient?.fullName.toLowerCase()}}</div>
     <div class="birthday" *ngIf="patient?.birthDate.dateTime">{{(patient?.birthDate.dateTime | date: birthDateFormat) +
       ' - '
-      + patient?.birthDate.age + ' ' + ('practitionerView.label.years' | translate)}}
+      + patient?.birthDate.age + ' ' + ('PRACTITIONERVIEW.LABEL.YEARS' | translate)}}
     </div>
   </div>
   <div class="standard-time">
-    <label class="standard-time-label">{{'practitionerView.patientBar.standardTimeLabel' | translate}}</label>
+    <label class="standard-time-label">{{'PRACTITIONERVIEW.PATIENTBAR.STANDARDTIMELABEL' | translate}}</label>
     <p-checkbox [(ngModel)]="stateObjects.checkbox.refeicao"
                 [disabled]="stateObjects.checkbox.disabled"
                 (onChange)="onStandardTimeChange('refeicao')"
                 name="food-checkbox"
                 binary="true"
-                label="{{'practitionerView.label.food' | translate}}">
+                label="{{'PRACTITIONERVIEW.LABEL.FOOD' | translate}}">
     </p-checkbox>
   </div>
   <div class="add-event-section">
     <button class="btn-new-event" (click)="addNewEvent()">
       <img src="./assets/img/ic_add_box_practitioner.svg" alt="add_icon">
-      {{'scheduler.newEventBtnLabel' | translate}}
+      {{'SCHEDULER.NEWEVENTBTNLABEL' | translate}}
     </button>
   </div>
 </div>
@@ -31,15 +31,15 @@
     <input type="text"
            class="form-control input-lg"
            maxlength="60"
-           placeholder="{{'practitionerView.messageField.inputPlaceholder' | translate}}"
+           placeholder="{{'PRACTITIONERVIEW.MESSAGEFIELD.INPUTPLACEHOLDER' | translate}}"
            [ngModel]="messageInput"
            (ngModelChange)="messageInput =  $event"
            (keyup.enter)="messageInput ? sendMessage() : ''">
-    <button class="btn" *ngIf="messageInput">{{'practitionerView.messageField.sendButton' | translate}}</button>
+    <button class="btn" *ngIf="messageInput">{{'PRACTITIONERVIEW.MESSAGEFIELD.SENDBUTTON' | translate}}</button>
   </div>
   <button class="btn" (click)="copyEventsFromYesterday()">
     <img src="./assets/img/ic_content_copy_24px.svg" alt="add_icon">
-    {{'practitionerView.label.copyFromYesterday' | translate}}
+    {{'PRACTITIONERVIEW.LABEL.COPYFROMYESTERDAY' | translate}}
   </button>
 </div>
 <scheduler [customScheduleObject]="schedulerConfig"

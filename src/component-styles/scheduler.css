@@ -165,10 +165,6 @@ hr.fc-divider {
 .fc-logo-event {
   height: 100%;
   width: 40%;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -233,15 +229,19 @@ hr.fc-divider {
   background-size: contain;
 }
 
+.fc-logo-event .logo-procedimento {
+  background: url("../assets/img/procedimentos.png") center center no-repeat;
+  min-height: 1rem;
+  height: 8rem;
+  width: 70%;
+  background-size: contain;
+}
+
 .fc-logo-event .logo-outros {
   height: 5rem;
   width: 5rem;
   border: 5px solid #E7CDC7;
   border-radius: 50%;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -290,6 +290,10 @@ hr.fc-divider {
   color: #8ea4a0;
 }
 
+.logo-procedimento + .logo-description {
+  color: #0e858d;
+}
+
 .logo-outros + .logo-description {
   color: #8d8584;
 }
@@ -303,10 +307,6 @@ hr.fc-divider {
 }
 
 .fc-day-grid-event {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -327,10 +327,6 @@ hr.fc-divider {
 }
 
 .fc-time-grid-event {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -340,10 +336,6 @@ hr.fc-divider {
   font-family: 'skolasansmedium';
   font-size: 1.8rem;
   color: #241D19;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   flex-direction: column;
   justify-content: center;

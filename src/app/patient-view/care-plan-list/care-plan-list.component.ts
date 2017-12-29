@@ -1,10 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CareplanService } from '../../services/careplan.service';
-import { Careplan } from '../../shared/models/careplan';
-import { CareplanActivityCategory } from '../../shared/models/careplan-activity-category';
 import { CareplanActivityCategories } from '../../shared/models/careplan-activity-categories';
-import { CareplanActivityType } from '../../shared/models/careplan-activity-type';
 import { CareplanActivityTypes } from '../../shared/models/careplan-activity-types';
 import { Subscription } from 'rxjs/Subscription';
 import { RefreshService } from '../../services/refresh.service';
@@ -24,7 +21,6 @@ export class CarePlanListComponent implements OnInit, OnDestroy {
   headerLabelNoCareplan: string = 'Sem registros<br>no Plano de Cuidados';
 
   patientCareplan;
-  private carePlanData: any;
   private careplanActivityTypes: CareplanActivityTypes;
   private careplanActivityCategories: CareplanActivityCategories;
   activeDay;
@@ -67,12 +63,13 @@ export class CarePlanListComponent implements OnInit, OnDestroy {
       });
   }
 
-
+  // Remove all the listeners
   unloadGeneralListeners() {
     this.refreshSubscription.unsubscribe();
     this.dateEventSubscription.unsubscribe();
   }
 
+  // Load the patient's care plan
   fetchCarePlanData() {
     console.log(this.patientId);
     this.careplanService.getCareplanActivityTypes().subscribe(
@@ -126,17 +123,19 @@ export class CarePlanListComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Open the careplan app only in IOS devices
   openCarePlan() {
     const CAREPLAN_URL = 'careplan://';
     startApp.set(CAREPLAN_URL).start(
-      function() { /* success */
+      function () { /* success */
         console.log('OK. Chamada...');
-      }, function(error) { /* fail */
+      }, function (error) { /* fail */
         console.error(error);
       }
     );
   }
 
+  // Change the activity's state to completed or not
   activitiesDone() {
     this.done = 0;
     this.qtd = 0;
@@ -146,7 +145,7 @@ export class CarePlanListComponent implements OnInit, OnDestroy {
     }
 
     if (this.patientCareplan) {
-      this.patientCareplan.activities.filter( (currentValue) => {
+      this.patientCareplan.activities.filter((currentValue) => {
         return this.isSameDate(new Date(currentValue.scheduledPeriod.startDate.dateTime), this.activeDay);
       }).map((current) => {
         if (current.status === 'completed') {
@@ -161,12 +160,13 @@ export class CarePlanListComponent implements OnInit, OnDestroy {
     } else {
       this.percent = 0;
     }
-}
+  }
 
+  // Check if two dates are equal
   isSameDate(date1: Date, date2: Date) {
     return (date1.getDate() === date2.getDate() &&
-        date1.getMonth() === date2.getMonth() &&
-        date1.getFullYear() === date2.getFullYear());
+      date1.getMonth() === date2.getMonth() &&
+      date1.getFullYear() === date2.getFullYear());
   }
 
 }

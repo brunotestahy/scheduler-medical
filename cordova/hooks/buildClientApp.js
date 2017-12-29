@@ -9,9 +9,9 @@ console.log(basePath + "/../");
     process.chdir(basePath + '/../');
     console.log("Compilando aplicacao...");
 
-//    execSync("ng build --base-href .",{stdio:[0,1,2]});
-    execSync("ng build --base-href . --env=cstar-hmg",{stdio:[0,1,2]});
-//    execSync("ng build --base-href . --env=cstar-prd",{stdio:[0,1,2]});
+//    execSync("ng build --prod --base-href .",{stdio:[0,1,2]});
+//    execSync("ng build --prod --base-href . --env=cstar-hmg",{stdio:[0,1,2]});
+    execSync("ng build --prod --base-href . --env=cstar-prd",{stdio:[0,1,2]});
 
     var files = fs.readdirSync(baseWWW);
     for (var i = 0; i < files.length; i++) {

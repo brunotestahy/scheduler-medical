@@ -4,7 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 const scheduleServer = 'https://hcssmart01.rededor.corp/schedule_server';
-const identificationServer = 'https://rdhcssmarthml01.rededor.corp/identification_server';
+const identificationServer = 'https://hcssmart01.rededor.corp/identification_server';
 
 export const environment = {
   production: false,

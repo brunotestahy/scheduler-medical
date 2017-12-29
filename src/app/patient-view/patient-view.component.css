@@ -24,10 +24,6 @@
 }
 
 :host /deep/ #header_superior .row {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   align-items: center;
   margin-right: 0 !important;
@@ -39,10 +35,6 @@
 }
 
 :host /deep/ .header-col:nth-of-type(2) {
-  display: -webkit-box !important;
-  display: -moz-box !important;
-  display: -ms-flexbox !important;
-  display: -webkit-flex !important;
   display: flex !important;
   align-items: center !important;
   width: 80%;
@@ -51,19 +43,11 @@
 
 :host /deep/ .header-col:nth-of-type(4) {
   order: 1;
-  display: -webkit-box !important;
-  display: -moz-box !important;
-  display: -ms-flexbox !important;
-  display: -webkit-flex !important;
   display: flex !important;
   align-items: center !important;
 }
 
 /deep/ .header-col:nth-of-type(5) {
-  display: -webkit-box !important;
-  display: -moz-box !important;
-  display: -ms-flexbox !important;
-  display: -webkit-flex !important;
   display: flex !important;
   align-items: center;
   justify-content: center;

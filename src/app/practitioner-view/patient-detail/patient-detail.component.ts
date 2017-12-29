@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class PatientDetailComponent implements OnInit, OnDestroy {
 
+  // Options to overwrite the default settings on schedule
   schedulerConfig: Scheduler = {
     newEventHeader: {
       active: false
@@ -24,6 +25,7 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
     onlineMode: true
   };
 
+  // State variables to control the loading and checkbox elements
   stateObjects = {
     isLoading: true,
     checkbox: {
@@ -55,7 +57,6 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.fetchSelectedPatient();
-    // this.loadEventsFromPatient();
     this.loadGeneralListeners();
     this.birthDateFormat = this.translateService.currentLang === 'pt' || 'es' ? this.birthDateFormat : 'MM/dd/y';
     setTimeout(() => {
@@ -67,12 +68,15 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
     this.unloadGeneralListeners();
   }
 
+  // Load the information about the selected patient by the practitioner
   fetchSelectedPatient() {
     this.patient = this.patientService.getSelectedPatient();
     this.schedulerConfig.patientData = this.patient;
-    if (JSON.parse(sessionStorage.getItem('employee')) && JSON.parse(sessionStorage.getItem('employee'))['dto']) {
-      console.log(JSON.parse(sessionStorage.getItem('employee'))['dto']);
-    }
+
+    // Uncomment this only to see the employee information
+    // if (JSON.parse(sessionStorage.getItem('employee')) && JSON.parse(sessionStorage.getItem('employee'))['dto']) {
+    //   console.log(JSON.parse(sessionStorage.getItem('employee'))['dto']);
+    // }
   }
 
   loadGeneralListeners() {
@@ -98,16 +102,19 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
       });
   }
 
+  // Remove all the listeners
   unloadGeneralListeners() {
     this.disableCheckboxState.unsubscribe();
     this.checkCheckboxState.unsubscribe();
     this.generalErrorState.unsubscribe();
   }
 
+  // Back navigation
   backToPreviousPage() {
     this.router.navigate(['/practitioner/patient']);
   }
 
+  // Emit the checkbox state changing event
   onStandardTimeChange(standardCategory: string) {
     this.scheduleService.emitDisableStandardCheckbox(true);
 
@@ -119,10 +126,12 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Emit this event to open the modal
   addNewEvent() {
     this.scheduleService.emitAddNewEvent();
   }
 
+  // Emit this event to start the copy from yesterday feature
   copyEventsFromYesterday() {
     this.scheduleService.emitCopyEventsFromYesterday();
   }
